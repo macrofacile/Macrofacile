@@ -302,9 +302,9 @@ footer{font-weight:400;color:#4A4A4A}
 .acc-card .acc-ic{grid-row:1 / span 3}.acc-t{font-size:21px}.acc-d{font-size:14.5px}.acc-go{margin-top:4px;font-size:15px}}
 
 /* Accueil : mouvement */
-.hero,.acc-card,.acc-news,.acc-ig{animation:riseIn .55s cubic-bezier(.34,1.56,.64,1) both}
+.hero,.acc-card,.acc-news-wrap,.acc-ig{animation:riseIn .55s cubic-bezier(.34,1.56,.64,1) both}
 .acc-card.c1{animation-delay:.08s}.acc-card.c2{animation-delay:.16s}.acc-card.c3{animation-delay:.24s}
-.acc-news{animation-delay:.32s}.acc-ig{animation-delay:.4s}
+.acc-news-wrap{animation-delay:.32s}.acc-ig{animation-delay:.4s}
 @keyframes riseIn{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:none}}
 .acc-ic{transition:transform .25s cubic-bezier(.34,1.56,.64,1)}
 .acc-card:hover .acc-ic{transform:rotate(-8deg) scale(1.1)}
@@ -326,7 +326,8 @@ footer{font-weight:400;color:#4A4A4A}
 }
 @keyframes icFloat{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-3px) rotate(-6deg)}}
 @keyframes pibTilt{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg) scale(1.04)}}
-@media (prefers-reduced-motion:reduce){.hero,.acc-card,.acc-news,.acc-ig,.acc-ic,.acc-pib{animation:none!important}}
+.acc-news-wrap{display:block}
+@media (prefers-reduced-motion:reduce){.hero,.acc-card,.acc-news-wrap,.acc-news,.acc-ig,.acc-ic,.acc-pib{animation:none!important}}
 </style>
 </head>
 <body>
@@ -578,7 +579,7 @@ function accueil(){
     el('span',{class:'new'},'Nouveau'),el('span',{class:'acc-nt'},'Le quiz sur ',el('span',{class:'acc-pib'},'LE PIB')),el('span',{class:'acc-nd'},'10 questions sur toute la série'),el('span',{class:'cta'},'Commencer ',el('span',{class:'arr'},'→'))):null;
   const ig=el('a',{class:'acc-ig',href:INSTA_URL,target:'_blank',rel:'noopener'});
   ig.innerHTML=IGSVG+'<span><b>Suis Macrofacile! sur Instagram</b><br>Les nouvelles séries sortent d’abord sur Insta</span>';
-  app.append(el('div',{style:'display:flex;flex-direction:column;gap:30px'},hero,cards,news,ig)); window.scrollTo({top:0});
+  app.append(el('div',{style:'display:flex;flex-direction:column;gap:30px'},hero,cards,news?el('div',{class:'acc-news-wrap'},news):null,ig)); window.scrollTo({top:0});
 }
 
 function home(){
