@@ -263,6 +263,16 @@ footer{font-weight:400;color:#4A4A4A}
 .badgewin{display:inline-flex;align-items:center}
 .badgewin .star{width:20px;height:20px}
 .dice .ico{margin:0}
+
+/* Téléphone : pas de survol, donc petite animation en continu sur la carte PIB */
+@media (hover:none){
+  .featured .new{animation:newPop 2.4s ease-in-out infinite;transform-origin:50% 60%}
+  .featured .cta{animation:ctaBounce 2.4s cubic-bezier(.34,1.56,.64,1) infinite}
+  .featured .arr{animation:nudge 1.2s ease-in-out infinite}
+}
+@keyframes newPop{0%,100%{transform:rotate(3deg) scale(1)}15%{transform:rotate(-4deg) scale(1.12)}30%{transform:rotate(5deg) scale(1.08)}45%{transform:rotate(3deg) scale(1)}}
+@keyframes ctaBounce{0%,60%,100%{transform:translateY(0)}70%{transform:translateY(-6px) rotate(-2deg)}80%{transform:translateY(0)}88%{transform:translateY(-3px)}}
+@media (prefers-reduced-motion:reduce){.featured .new,.featured .cta,.featured .arr{animation:none}}
 </style>
 </head>
 <body>
