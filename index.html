@@ -593,7 +593,7 @@ function accueil(){
     card('c3',ICO.lex,'Le lexique','Retrouve la définition de n’importe quel mot de l’éco.',()=>lexique()));
   const pib=QUIZZES.find(z=>z.featured);
   const news=pib?el('button',{class:'acc-news',type:'button',style:pib.bg?'background:'+pib.bg:null,onclick:()=>start(pib)},
-    el('span',{class:'new'},'Nouveau'),el('span',{class:'acc-nt'},'Le quiz sur ',el('span',{class:'acc-pib'},pib.title.toUpperCase())),el('span',{class:'acc-nd'},'10 questions sur toute la série'),el('span',{class:'cta'},'Commencer ',el('span',{class:'arr'},'→'))):null;
+    el('span',{class:'new'},'Nouveau'),el('span',{class:'acc-nt'},'Le quiz sur ',el('span',{class:'acc-pib'},pib.title)),el('span',{class:'acc-nd'},'10 questions sur toute la série'),el('span',{class:'cta'},'Commencer ',el('span',{class:'arr'},'→'))):null;
   const ig=el('a',{class:'acc-ig',href:INSTA_URL,target:'_blank',rel:'noopener'});
   ig.innerHTML=IGSVG+'<span><b>Suis Macrofacile! sur Instagram</b><br>Les nouvelles séries sortent d’abord sur Insta</span>';
   app.append(el('div',{style:'display:flex;flex-direction:column;gap:30px'},hero,cards,news?el('div',{class:'acc-news-wrap'},news):null,ig)); window.scrollTo({top:0});
