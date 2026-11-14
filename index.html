@@ -515,7 +515,6 @@ function series(){
       parts,
       el('div',{class:'actions'},q?el('button',{class:'btn primary',type:'button',onclick:()=>start(q)},'Faire le quiz →'):null,ig)));
   });
-  blocks.push(el('p',{class:'soon'},'Bientôt : la série sur '+NEXT_SERIES.toLowerCase()+'.'));
   app.append(el('div',{style:'display:flex;flex-direction:column;gap:28px'},...blocks)); window.scrollTo({top:0});
 }
 function ask2(){
@@ -616,7 +615,6 @@ function home(){
       el('span',{class:'ft'},'Le quiz de toute la série'),
       el('span',{class:'fs'},z.sub),
       el('span',{class:'go'},bestPill(best,z.questions.length),el('span',{class:'cta'},'Commencer ',el('span',{class:'arr'},'→')))))});
-  blocks.push(el('p',{class:'soon'},'Bientôt : le quiz sur l’inflation.'));
   const bd=getBest('defi');
   blocks.push(el('button',{class:'defi',type:'button',onclick:startDefi},
     el('span',{class:'dice','aria-hidden':'true'},ico(DICE)),
