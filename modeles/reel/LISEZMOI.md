@@ -12,5 +12,8 @@ Modèle du reel « Le PIB » (1080×1920, 36 s). À réutiliser pour chaque nouv
 - Fin : logo + « La suite sur le compte » (gras) + « Quiz + lexique gratuits sur macrofacile.fr »
 - Bruitages (pop, whoosh, craie…) + `musique.wav` : petite musique sans voix (104 bpm, marimba), composée, libre de droits
 
+Exemples : `reel-pib.html`, `reel-demande.html` (copier en `reel.html` avant le rendu).
+Son : `python3 make_audio.py` (bruitages calés sur les apparitions + musique 104 bpm, à adapter aux temps).
+
 Rendu : `node capss.js 0 36 sortie.mp4` (supersampling ×2, qualité max), puis ajouter le son (AAC stéréo).
 Conseil Insta : « Upload at highest quality » activé, publier en Wi-Fi.
