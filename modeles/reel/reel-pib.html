@@ -89,18 +89,19 @@ function show(id,t,t0,t1,kind){const e=$(id);const p=(t-t0)/0.45,q=(t-t1)/0.3;
  else if(kind==='right')tr=`translateX(${(1-k)*700}px)`;else tr=`translateY(${(1-k)*80}px)`;
  if(q>0)tr+=` translateY(${-out(q)*60}px)`;e.style.opacity=o;e.style.transform=tr;}
 // prof lines: [start,end,text]
-const LINES=[[0.9,2.3,'Facile, tu vas voir !'],[2.4,4.75,'On va voir ça\nensemble !'],[9.6,11.5,'On additionne tout !'],[14.6,17.3,'Énorme, non ?'],[21.8,23.9,'Les infos en\nparlent souvent !'],[26.2,29,'À bientôt !']];
-function render(tr){let t=tr<3.4?tr:(tr<4.4?3.4:tr-1.0);
- const lo=t<23.4?1:1-cl((t-23.4)/0.3);$('logoTop').style.opacity=lo;
+const LINES=[[0.9,2.3,'Facile, tu vas voir !'],[2.4,4.75,'On va voir ça\nensemble !'],[9.4,12.6,'On additionne tout !'],[17.0,20.4,'Énorme, non ?'],[25.0,28.8,'Les infos en\nparlent souvent !'],[31.4,36,'À bientôt !']];
+function render(tr){let t=tr;
+ const lo=t<29.0?1:1-cl((t-29.0)/0.3);$('logoTop').style.opacity=lo;
  $('logoTop').style.transform=`rotate(${Math.sin(t*2.2)*3}deg) translateY(${Math.sin(t*1.6)*6}px)`;
- show('pib',t,0.2,3.8,'pop');show('quoi',t,0.9,3.8,'right');
- if(t>1.6&&t<3.8)$('pib').style.transform+=` rotate(${Math.sin((t-1.6)*5)*1.5}deg)`;
- show('t2',t,4.2,10.6,'up');show('r1',t,5.8,10.6,'left');show('r2',t,7.0,10.6,'right');show('s2b',t,8.2,10.6,'up');
- show('lab4',t,11.0,16.4,'up');show('num',t,11.5,16.4,'pop');show('unit',t,13.4,16.4,'up');show('s3b',t,14.2,16.4,'up');
- $('n').textContent=Math.round(2991*out((t-11.7)/1.6)).toLocaleString('fr-FR').replace(/ /g,' ');
- show('t5',t,16.8,23.0,'up');show('t5b',t,17.3,23.0,'up');$('ul').style.width=(out((t-17.9)/0.9)*100)+'%';show('g1',t,18.2,23.0,'left');show('g2',t,19.4,23.0,'right');show('s4b',t,20.4,23.0,'up');
- show('endlogo',t,23.6,99,'pop');show('end1',t,24.3,99,'up');show('end3',t,24.7,99,'up');show('end2',t,25.1,99,'pop');
- if(t>23.6)$('endlogo').style.transform+=` rotate(${Math.sin((t-23.6)*2.4)*3}deg)`;
+ show('pib',t,0.2,4.8,'pop');show('quoi',t,0.9,4.8,'right');
+ if(t>1.6&&t<4.8)$('pib').style.transform+=` rotate(${Math.sin((t-1.6)*5)*1.5}deg)`;
+ show('t2',t,5.2,12.8,'up');show('r1',t,6.2,12.8,'left');show('r2',t,7.0,12.8,'right');show('s2b',t,7.8,12.8,'up');
+ show('lab4',t,13.2,20.6,'up');show('num',t,13.6,20.6,'pop');show('unit',t,15.0,20.6,'up');show('s3b',t,15.6,20.6,'up');
+ $('n').textContent=Math.round(2991*out((t-13.8)/1.4)).toLocaleString('fr-FR').replace(/ /g,' ');
+ show('t5',t,21.0,29.0,'up');show('t5b',t,21.4,29.0,'up');$('ul').style.width=(out((t-21.9)/0.9)*100)+'%';
+ show('g1',t,22.4,29.0,'left');show('g2',t,23.2,29.0,'right');show('s4b',t,24.0,29.0,'up');
+ show('endlogo',t,29.4,99,'pop');show('end1',t,30.1,99,'up');show('end3',t,30.5,99,'up');show('end2',t,30.9,99,'pop');
+ if(t>29.4)$('endlogo').style.transform+=` rotate(${Math.sin((t-29.4)*2.4)*3}deg)`;
  t=tr;
  // prof: enters at 0.4, bobs, blinks, talks when a line is active
  const pin=back((t-0.3)/0.6);
