@@ -44,12 +44,8 @@
 <div class="a" id="t5" style="top:430px"><div class="lab" style="transform:rotate(-2deg)">Et à l'envers ?</div></div>
 <div class="a" id="g1" style="top:620px"><div style="background:#FFC9C9;border-radius:36px;box-shadow:0 10px 0 #121212;padding:34px 30px;display:flex;flex-wrap:wrap;justify-content:center;gap:22px 16px;width:940px">
 <span class="ch">Achats <svg width="44" height="44" viewBox="0 0 30 30"><circle cx="15" cy="15" r="15" fill="#D63031"/><path d="M15 7 V22 M9 16 L15 22 L21 16" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><b style="font-size:50px">→</b><span class="ch">Production <svg width="44" height="44" viewBox="0 0 30 30"><circle cx="15" cy="15" r="15" fill="#D63031"/><path d="M15 7 V22 M9 16 L15 22 L21 16" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><b style="font-size:50px">→</b><span class="ch">Emplois <svg width="44" height="44" viewBox="0 0 30 30"><circle cx="15" cy="15" r="15" fill="#D63031"/><path d="M15 7 V22 M9 16 L15 22 L21 16" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div></div>
-<div class="a" id="t5b" style="top:960px"><div class="sub" style="font-size:62px;width:auto;position:relative;padding-bottom:16px;font-weight:500;line-height:1.3;text-align:center">C'est la demande qui fait<br><b>tourner l'économie</b><div id="ul" style="position:absolute;left:0;bottom:0;height:6px;border-radius:3px;background:#121212;width:0"></div></div></div>
+<div class="a" id="t5b" style="top:960px"><div class="sub" style="font-size:62px;width:auto;font-weight:500;line-height:1.3;text-align:center">C'est la demande qui fait<br><b style="position:relative;display:inline-block;padding-bottom:10px">tourner l'économie<span id="ul" style="position:absolute;left:0;bottom:0;height:6px;border-radius:3px;background:#121212;width:0"></span></b></div></div>
 
-<div class="a" id="il1" style="top:1260px;left:auto;right:70px"><div style="transform:rotate(6deg)"><svg width="250" viewBox="0 0 200 170" fill="none" stroke="#121212" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
-<rect x="70" y="30" width="34" height="34" rx="5" fill="#FF9E9E"/><rect x="108" y="20" width="28" height="44" rx="5" fill="#B9A7FF"/><circle cx="148" cy="48" r="16" fill="#FFD166"/>
-<path d="M10 20 H34 L52 112 H160 L178 52 H40" fill="#fff"/><path d="M60 82 H168"/>
-<circle cx="70" cy="140" r="13" fill="#121212"/><circle cx="148" cy="140" r="13" fill="#121212"/><path d="M52 112 L58 124 H156"/></svg></div></div>
 <div class="a" id="il3" style="top:1300px;left:auto;right:90px"><div style="transform:rotate(-6deg)"><svg width="210" viewBox="0 0 160 160" fill="none" stroke="#121212" stroke-width="7" stroke-linejoin="round" stroke-linecap="round">
 <rect x="20" y="62" width="120" height="86" rx="10" fill="#FF9E9E"/><rect x="12" y="42" width="136" height="30" rx="8" fill="#FF6B6B"/>
 <path d="M80 42 V148" stroke="#FFD166" stroke-width="16"/><path d="M80 42 V148"/>
@@ -116,8 +112,8 @@ function render(tr){let t=tr;
  show('t2',t,5.2,12.8,'up');show('r1',t,6.0,12.8,'pop');show('r2',t,6.6,12.8,'pop');show('r3',t,7.2,12.8,'pop');show('r4',t,7.8,12.8,'pop');show('s2b',t,8.6,12.8,'up');
  show('lab4',t,13.2,20.6,'up');show('c1',t,13.8,20.6,'left');show('c2',t,14.8,20.6,'right');show('c3',t,15.8,20.6,'left');
  show('t5',t,21.0,29.0,'up');show('g1',t,21.6,29.0,'pop');show('t5b',t,23.0,29.0,'up');$('ul').style.width=(out((t-23.6)/0.9)*100)+'%';
- show('il1',t,1.6,4.8,'pop');show('il3',t,14.4,20.6,'pop');show('il4',t,22.2,29.0,'pop');
- for(const [id,t0] of [['il1',1.6],['il3',14.4],['il4',22.2]])if(t>t0+0.5)$(id).style.transform+=` rotate(${Math.sin((t-t0)*3)*4}deg) translateY(${Math.sin((t-t0)*2.2)*6}px)`;
+ show('il3',t,14.4,20.6,'pop');show('il4',t,22.2,29.0,'pop');
+ for(const [id,t0] of [['il3',14.4],['il4',22.2]])if(t>t0+0.5)$(id).style.transform+=` rotate(${Math.sin((t-t0)*3)*4}deg) translateY(${Math.sin((t-t0)*2.2)*6}px)`;
  show('endlogo',t,29.4,99,'pop');show('end1',t,30.1,99,'up');show('end3',t,30.5,99,'up');show('end2',t,30.9,99,'pop');
  if(t>29.4)$('endlogo').style.transform+=` rotate(${Math.sin((t-29.4)*2.4)*3}deg)`;
  t=tr;
