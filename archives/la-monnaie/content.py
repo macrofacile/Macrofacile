@@ -81,37 +81,41 @@ P['p3'] = [
 {moment('12h','Sandwich à 6 € par carte','le resto accepte, comme tout le monde','payer',OP)}</div>''', F(2)),
  slide(f'''<div class="tag">L'après-midi</div><div class="mid" style="gap:10px;margin:60px 0 auto">
 {moment('15h','Elle hésite entre 2 jeans','un à 40 €, l\'autre à 60 € : facile de choisir','comparer',GP)}
-{moment('18h','Elle met 100 € de côté','pour ses vacances cet été','garder pour plus tard',VP)}</div>''', F(3)),
+{moment('18h','Elle met 100 € de côté','pour ses vacances cet été','garder pour plus tard',VP)}</div>{deco(jar(190),445,140,-5)}''', F(3)),
  slide(f'''<div class="tag">Le soir</div><div class="mid" style="gap:10px;margin:60px 0 auto">
 {moment('19h','Un crédit pour une voiture','la banque lui prête 10 000 €, elle rembourse chaque mois','les banques',Y)}
-<p class="txt" style="font-size:40px;margin-top:-20px">… avec un peu plus à rembourser :<br><b>les intérêts</b></p>
+<p class="txt" style="font-size:40px;margin-top:20px">… avec un peu plus à rembourser :<br><b>les intérêts</b></p>
 <div style="display:flex;justify-content:center;margin-top:30px;transform:rotate(-3deg)"><svg width="520" viewBox="0 0 300 140" fill="none" stroke="#121212" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"><path d="M20 96 V74 c0-8 6-12 14-14 l30-6 l26-26 c6-6 12-8 20-8 h70 c10 0 16 4 22 12 l20 26 l40 8 c8 2 12 8 12 16 v14 Z" fill="#FF9E9E"/><path d="M98 52 l18-18 h40 v18 Z M168 34 h18 l14 18 h-32 Z" fill="#CDE6FF"/><circle cx="76" cy="100" r="20" fill="#121212"/><circle cx="76" cy="100" r="7" fill="#fff" stroke="none"/><circle cx="226" cy="100" r="20" fill="#121212"/><circle cx="226" cy="100" r="7" fill="#fff" stroke="none"/></svg></div></div>''', F(4)),
  slide(f'''<div class="tag">À retenir</div><div class="mid" style="gap:60px;margin:auto 0">
-<p class="big" style="font-size:60px">La monnaie est partout<br><span class="hl">dans ta journée.</span></p>
+<p class="big" style="font-size:60px;margin-bottom:40px">La monnaie est partout<br><span class="hl">dans ta journée.</span></p>
 <p class="txt" style="font-size:40px">Payer, comparer, garder…<br>et les banques la font circuler.</p>
-{nextpost('B','Pourquoi un billet vaut 20 € ?').replace('Partie B/3','Bonus')}</div>''', F(5)),
+{nextpost('B','Pourquoi un billet de 20 € vaut 20 € ?').replace('Partie B/3','Bonus')}</div>''', F(5)),
 ]
 
 # ---------- BONUS ----------
 F = lambda n, t=5: foot('', n, t, bonus=True)
 P['bonus'] = [
- cover(0, 'Pourquoi un billet<br>vaut 20 € ?', dark=True).replace('white-space:nowrap">Pourquoi','white-space:normal;text-align:center">Pourquoi'),
+ cover(0, 'Pourquoi un billet<br>de 20 € vaut 20 € ?', dark=True).replace('white-space:nowrap">Pourquoi','white-space:normal;text-align:center">Pourquoi'),
  slide(f'''<div class="tag">Imagine…</div><div class="mid" style="gap:44px;margin:auto 0">
 <p class="big" style="font-size:60px;margin-bottom:20px">Un billet de 20 €,<br>c'est juste… <span style="{UL}">du papier</span>.</p>
 <div style="display:flex;justify-content:center">{billet(360)}</div>
 <div class="card"><p class="txt" style="font-size:40px">Il coûte quelques centimes à fabriquer.<br><b>Alors pourquoi tout le monde l'accepte ?</b></p></div></div>''', F(2)),
- slide(f'''<div class="tag">Avant</div><div class="mid" style="gap:36px;margin:auto 0">
-<p class="big" style="font-size:56px;margin-bottom:20px">Autrefois, la monnaie<br><span class="hl">valait son poids en métal</span></p>
-{row('euro','Des pièces en or ou en argent','leur valeur, c\'était le métal',OP)}
-<p class="txt" style="font-size:38px">Aujourd'hui, plus du tout.<br>Alors d'où vient sa valeur ?</p></div>''', F(3)),
- slide(f'''<div class="tag">La réponse : la confiance</div><div class="mid" style="gap:30px;margin:auto 0">
-<p class="big" style="font-size:50px;margin-bottom:20px">Tu acceptes un billet de 20 €…<br><span class="hl">parce que tu sais que le boulanger<br>l'acceptera aussi</span></p>
-{row('menage','« Fiduciaire » vient du latin fiducia','= confiance',VP)}
-{row('etat','La banque centrale','veille à ce que sa valeur reste stable',BP)}</div>''', F(4)),
- slide(f'''<div class="tag">Et sans confiance ?</div><div class="mid" style="gap:28px;margin:auto 0">
-<p class="big" style="font-size:54px;margin-bottom:16px">La monnaie <span class="hl">ne vaut plus rien</span></p>
-{row('monde','Ex. : le Zimbabwe, en 2008','les prix explosent, les billets ne valent plus rien',RP)}
-{row('menage','Les gens refusent la monnaie','ils préfèrent des dollars… ou le troc',OP)}
+ slide(f'''<div class="tag">Avant</div><div class="mid" style="gap:40px;margin:auto 0">
+<p class="big" style="font-size:58px;margin-bottom:20px">Autrefois, la monnaie<br><span class="hl">valait son poids en métal</span></p>
+<div style="display:flex;justify-content:center"><svg width="320" viewBox="0 0 240 150" fill="none" stroke="#121212" stroke-width="6"><ellipse cx="80" cy="96" rx="58" ry="46" fill="#FFD166"/><ellipse cx="80" cy="96" rx="40" ry="30" stroke-width="4"/><text x="80" y="107" text-anchor="middle" font-family="F" font-weight="700" font-size="28" fill="#121212" stroke="none">OR</text><ellipse cx="170" cy="70" rx="50" ry="40" fill="#E6E6E6"/><ellipse cx="170" cy="70" rx="34" ry="26" stroke-width="4"/><path d="M152 58 q8 -10 18 -8" stroke-width="5" stroke-linecap="round"/></svg></div>
+{row('euro','Des pièces en or ou en argent','leur valeur, c\'était le métal à l\'intérieur',OP)}
+<p class="txt" style="font-size:40px;margin-top:10px">Aujourd'hui, un billet, c'est du papier.<br><b>Alors d'où vient sa valeur ?</b></p></div>''', F(3)),
+ slide(f'''<div class="tag">La réponse : la confiance</div><div class="mid" style="gap:40px;margin:auto 0">
+<p class="big" style="font-size:50px;margin-bottom:60px">Tu acceptes un billet de 20 €…<br><span class="hl">parce que tu sais que le boulanger<br>l'acceptera aussi</span></p>
+{row('etat','L\'euro est la monnaie officielle','en France, un commerçant doit l\'accepter',VP)}
+{row('pourcent','La banque centrale veille','à ce que sa valeur reste stable',BP)}</div>''', F(4)),
+ slide(f'''<div class="tag">Et chez nous ?</div><div class="mid" style="gap:30px;margin:auto 0">
+<p class="big" style="font-size:52px;margin-bottom:20px">Le 1er janvier 2002, la France<br><span class="hl">change de monnaie</span></p>
+<div style="display:flex;gap:20px;align-items:center">
+<div class="row" style="background:{RP};flex:1;flex-direction:column;gap:4px;padding:22px"><b style="font-size:40px">Le franc</b><span style="font-size:30px;font-weight:500">au revoir</span></div>
+<b style="font-size:60px">→</b>
+<div class="row" style="background:{GP};flex:1;flex-direction:column;gap:4px;padding:22px"><b style="font-size:40px">L'euro</b><span style="font-size:30px;font-weight:500">bonjour</span></div></div>
+<p class="txt" style="font-size:36px">Du jour au lendemain, tout le monde<br>accepte les nouveaux billets.<br><b>Pourquoi ? Parce que tout le monde a confiance.</b></p>
 {quizblock}</div>''', F(5)),
 ]
 
