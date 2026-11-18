@@ -511,22 +511,38 @@ const SERIES=[
 const NEXT_SERIES='L’inflation';
 function series(){
   state=null; setTab('series'); app.innerHTML='';
+  const norm=x=>x.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
   const intro=el('section',{class:'center'},el('span',{class:'eyebrow'},'Les séries'),title('Révise ','série par série'),
     el('p',{class:'lede'},'L’essentiel de chaque série publiée sur Insta, en quelques lignes.'));
-  const blocks=[intro];
-  SERIES.forEach(sr=>{
+  const input=el('input',{class:'search',id:'search-series',type:'search',placeholder:'Cherche une série… (ex. : PIB, monnaie)','aria-label':'Chercher une série'});
+  const count=el('p',{class:'count'});
+  const list=el('div',{style:'display:flex;flex-direction:column;gap:28px'});
+  function card(sr){
     const q=QUIZZES.find(z=>z.id===sr.quiz);
     const parts=el('ol',{class:'parts'});
     sr.parts.forEach(pt=>parts.append(el('li',{class:'part'},
       el('span',{class:'pn'},pt.n),
       el('div',{class:'pt'},el('b',{},pt.t),el('p',{},pt.d),el('p',{class:'pk'},pt.k)))));
     const ig=el('a',{class:'btn ghost insta',href:INSTA_URL,target:'_blank',rel:'noopener'});ig.innerHTML=IGSVG+'<span>Voir sur Insta</span>';
-    blocks.push(el('section',{class:'serie'},
+    return el('section',{class:'serie'},
       el('div',{class:'shead'},el('span',{class:'qlabel'},sr.title),el('p',{class:'ssub'},sr.sub)),
       parts,
-      el('div',{class:'actions'},q?el('button',{class:'btn primary',type:'button',onclick:()=>start(q)},'Faire le quiz →'):null,ig)));
-  });
-  app.append(el('div',{style:'display:flex;flex-direction:column;gap:28px'},...blocks)); window.scrollTo({top:0});
+      el('div',{class:'actions'},q?el('button',{class:'btn primary',type:'button',onclick:()=>start(q)},'Faire le quiz →'):null,ig));
+  }
+  function render(){
+    const t=norm(input.value.trim());
+    const name=sr=>norm(sr.title).replace(/^(le|la|les|l')\s*/,'');
+    const first=SERIES.filter(sr=>!t||name(sr).startsWith(t)||norm(sr.title).startsWith(t));
+    const others=t?SERIES.filter(sr=>!first.includes(sr)&&(norm(sr.title+' '+sr.sub+' '+sr.parts.map(p=>p.t+' '+p.d+' '+p.k).join(' ')).includes(t))):[];
+    const f=first.concat(others);
+    list.innerHTML='';
+    count.textContent=t?(f.length+(f.length>1?' séries':' série')):(SERIES.length+(SERIES.length>1?' séries':' série'));
+    if(!f.length){list.append(el('p',{class:'empty'},'Pas encore de série sur ce sujet. Elle arrive peut-être bientôt !'));return}
+    f.forEach((sr,i)=>{if(i===first.length&&others.length)list.append(el('p',{class:'letter'},first.length?'Autres séries qui en parlent':'Séries qui en parlent'));list.append(card(sr))});
+  }
+  input.addEventListener('input',render);
+  app.append(el('div',{style:'display:flex;flex-direction:column;gap:28px'},intro,el('section',{class:'card'},input,count),list));
+  render(); window.scrollTo({top:0});
 }
 function ask2(){
   state=null; setTab('ask'); app.innerHTML='';
