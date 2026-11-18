@@ -242,6 +242,14 @@ footer{font-weight:400;color:#4A4A4A}
 .popx:hover{background:#121212;color:#fff}
 .serie{background:#fff;border:2.5px solid var(--edge);border-radius:24px;box-shadow:0 6px 0 var(--edge);padding:26px 22px 24px;display:flex;flex-direction:column;gap:20px}
 .shead{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
+.stoggle{all:unset;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;width:100%;-webkit-tap-highlight-color:transparent}
+.stoggle:focus-visible{outline:3px solid var(--y,#FFD166);outline-offset:6px;border-radius:16px}
+.chev{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:#FFD166;border:2.5px solid var(--edge);box-shadow:0 4px 0 var(--edge);transition:transform .25s}
+.serie.open .chev{transform:rotate(180deg)}
+.sbody{display:none;flex-direction:column;gap:20px}
+.serie.open .sbody{display:flex}
+.serie:not(.open){gap:0}
+@media (hover:hover){.stoggle:hover .chev{transform:translateY(2px)}.serie.open .stoggle:hover .chev{transform:rotate(180deg) translateY(-2px)}}
 .ssub{margin:0;color:#4A4A4A}
 .parts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
 .part{display:flex;gap:14px;align-items:flex-start;background:#F4F6FF;border:2px solid var(--edge);border-radius:16px;padding:14px 16px}
@@ -514,20 +522,25 @@ function series(){
   const norm=x=>x.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
   const intro=el('section',{class:'center'},el('span',{class:'eyebrow'},'Les séries'),title('Révise ','série par série'),
     el('p',{class:'lede'},'L’essentiel de chaque série publiée sur Insta, en quelques lignes.'));
-  const input=el('input',{class:'search',id:'search-series',type:'search',placeholder:'Cherche une série… (ex. : PIB, monnaie)','aria-label':'Chercher une série'});
+  const input=el('input',{class:'search',id:'search-series',type:'search',placeholder:'Cherche une série…','aria-label':'Chercher une série'});
   const count=el('p',{class:'count'});
   const list=el('div',{style:'display:flex;flex-direction:column;gap:28px'});
-  function card(sr){
+  function card(sr,open){
     const q=QUIZZES.find(z=>z.id===sr.quiz);
     const parts=el('ol',{class:'parts'});
     sr.parts.forEach(pt=>parts.append(el('li',{class:'part'},
       el('span',{class:'pn'},pt.n),
       el('div',{class:'pt'},el('b',{},pt.t),el('p',{},pt.d),el('p',{class:'pk'},pt.k)))));
     const ig=el('a',{class:'btn ghost insta',href:INSTA_URL,target:'_blank',rel:'noopener'});ig.innerHTML=IGSVG+'<span>Voir sur Insta</span>';
-    return el('section',{class:'serie'},
-      el('div',{class:'shead'},el('span',{class:'qlabel'},sr.title),el('p',{class:'ssub'},sr.sub)),
-      parts,
+    const chev=el('span',{class:'chev','aria-hidden':'true'});chev.innerHTML='<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#121212" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>';
+    const body=el('div',{class:'sbody'},parts,
       el('div',{class:'actions'},q?el('button',{class:'btn primary',type:'button',onclick:()=>start(q)},'Faire le quiz →'):null,ig));
+    const sec=el('section',{class:'serie'+(open?' open':'')});
+    const tg=el('button',{class:'stoggle',type:'button','aria-expanded':open?'true':'false'},
+      el('span',{class:'qlabel'},sr.title),el('p',{class:'ssub'},sr.sub+' · '+sr.parts.length+' posts'),chev);
+    tg.addEventListener('click',()=>{const o=sec.classList.toggle('open');tg.setAttribute('aria-expanded',o?'true':'false')});
+    sec.append(tg,body);
+    return sec;
   }
   function render(){
     const t=norm(input.value.trim());
@@ -538,7 +551,7 @@ function series(){
     list.innerHTML='';
     count.textContent=t?(f.length+(f.length>1?' séries':' série')):(SERIES.length+(SERIES.length>1?' séries':' série'));
     if(!f.length){list.append(el('p',{class:'empty'},'Pas encore de série sur ce sujet. Elle arrive peut-être bientôt !'));return}
-    f.forEach((sr,i)=>{if(i===first.length&&others.length)list.append(el('p',{class:'letter'},first.length?'Autres séries qui en parlent':'Séries qui en parlent'));list.append(card(sr))});
+    f.forEach((sr,i)=>{if(i===first.length&&others.length)list.append(el('p',{class:'letter'},first.length?'Autres séries qui en parlent':'Séries qui en parlent'));list.append(card(sr,i>=first.length))});
   }
   input.addEventListener('input',render);
   app.append(el('div',{style:'display:flex;flex-direction:column;gap:28px'},intro,el('section',{class:'card'},input,count),list));
