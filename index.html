@@ -4,10 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="Quiz et lexique gratuits pour comprendre l’économie simplement. Par Macro facile !">
-<meta property="og:title" content="Macro facile ! · Quiz et lexique">
+<meta property="og:title" content="Macro facile ! L’économie, sans prise de tête">
 <meta property="og:description" content="Teste-toi sur l’économie : quiz, lexique et séries, expliqués simplement.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://macrofacile.fr/">
+<meta property="og:image" content="https://macrofacile.fr/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#121212">
-<title>Quiz MacroFacile!</title>
+<title>Macro facile ! L’économie, sans prise de tête</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap">
 <style>
@@ -582,7 +591,7 @@ function ask2(){
 // --- mots cliquables
 function lexTerms(){
   if(lexTerms.c)return lexTerms.c;
-  const skip=new Set(['bien','service','offre','demande','marché','monnaie','entreprises','ménages','état','banques']);const out=[];
+  const skip=new Set(['bien','service','marché','monnaie','entreprises','ménages','état','banques']);const out=[];
   LEXIQUE.forEach(x=>{const base=x.w.replace(/\s*\(.*\)\s*$/,'').trim();if(skip.has(base.toLowerCase()))return;
     const v=new Set([base]);if(/s$/i.test(base))v.add(base.slice(0,-1));else v.add(base+'s');
     if(base==='Impôts et taxes'){v.clear();v.add('impôts');v.add('impôt')}
@@ -591,13 +600,16 @@ function lexTerms(){
   out.sort((a,b)=>b.t.length-a.t.length);
   lexTerms.c=out;return out;
 }
+const ONCE=new Set(['Offre','Demande']);let ONCE_SEEN=new Set();
 function linkify(text){
   const frag=document.createDocumentFragment();if(!text)return frag;
   const terms=lexTerms(), esc=t=>t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
   const re=new RegExp('(?<![\\p{L}])('+terms.map(o=>esc(o.t)).join('|')+')(?![\\p{L}])','giu');
   const used=new Set();let last=0,m;
   while((m=re.exec(text))){
-    const o=terms.find(o=>o.t.toLowerCase()===m[1].toLowerCase());if(!o||used.has(o.x.w))continue;used.add(o.x.w);
+    const o=terms.find(o=>o.t.toLowerCase()===m[1].toLowerCase());if(!o||used.has(o.x.w))continue;
+    if(ONCE.has(o.x.w)){if(ONCE_SEEN.has(o.x.w))continue;ONCE_SEEN.add(o.x.w)}
+    used.add(o.x.w);
     frag.append(text.slice(last,m.index));
     frag.append(el('button',{class:'lexlink',type:'button',onclick:e=>{e.stopPropagation();showWord(o.x)}},m[1]));
     last=m.index+m[1].length;
@@ -683,7 +695,7 @@ function home(){
 function plainPill(b,n){return b===undefined?null:el('span',{class:'best'},b+'/'+n)}
 function isSerie(z){return SERIES.some(sr=>sr.quiz===z.id)}
 function bestPill(b,n){if(b===undefined)return null;return b===n?el('span',{class:'best medal',title:'Badge : quiz réussi à 100 %'},ico(STAR),b+'/'+n):el('span',{class:'best'},b+'/'+n)}
-function start(z){state={z,i:0,score:0,answers:[]};setTab('quiz');ask();window.scrollTo({top:0})}
+function start(z){ONCE_SEEN=new Set();state={z,i:0,score:0,answers:[]};setTab('quiz');ask();window.scrollTo({top:0})}
 function ask(){
   const {z,i}=state, item=z.questions[i]; app.innerHTML='';
   const pct=Math.round((i+1)/z.questions.length*100);
