@@ -689,11 +689,16 @@ function lexique(){
   const count=el('p',{class:'count'}), list=el('div',{style:'display:flex;flex-direction:column;gap:12px'});
   function render(){
     const t=norm(input.value.trim());
-    const f=LEXIQUE.filter(x=>!t||norm(x.w).includes(t)||norm(x.def).includes(t)).sort((a,b)=>a.w.localeCompare(b.w,'fr'));
+    const az=(a,b)=>a.w.localeCompare(b.w,'fr');
+    const first=LEXIQUE.filter(x=>!t||norm(x.w).startsWith(t)).sort(az);
+    const others=t?LEXIQUE.filter(x=>!norm(x.w).startsWith(t)&&(norm(x.w).includes(t)||norm(x.def).includes(t))).sort(az):[];
+    const f=first.concat(others);
     count.textContent=f.length+(f.length>1?' mots':' mot'); list.innerHTML='';
     if(!f.length){list.append(el('p',{class:'empty'},'Pas encore ce mot dans le lexique. Il arrive bientôt !'));return}
     let last='';
-    f.forEach(x=>{const l=norm(x.w)[0].toUpperCase(); if(l!==last){list.append(el('p',{class:'letter'},l));last=l}
+    f.forEach((x,i)=>{
+      if(i===first.length&&others.length){list.append(el('p',{class:'letter'},first.length?'Autres mots qui en parlent':'Mots qui en parlent'));last='*'}
+      const l=norm(x.w)[0].toUpperCase(); if(i<first.length&&l!==last){list.append(el('p',{class:'letter'},l));last=l}
       list.append(el('article',{class:'word'},
         el('div',{class:'top'},el('span',{class:'w'},x.w)),
         el('p',{class:'def'},x.def), el('p',{class:'ex'},x.ex)))});
