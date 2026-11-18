@@ -472,8 +472,7 @@ const LEXIQUE=[
   {"w": "Politique budgétaire", "def": "Les choix de l’État sur ses dépenses et ses impôts, décidés chaque année dans le budget.", "ex": "Ex. : l’État construit plus d’écoles ou baisse les impôts pour relancer l’économie."},
   {"w": "Variable exogène", "def": "Un élément qui influence le modèle mais qui est décidé en dehors de lui. On le prend comme une donnée.", "ex": "Ex. : la pluie pour une économie agricole, ou les dépenses fixées par l’État."},
   {"w": "Troc", "def": "Échanger un bien contre un autre, sans monnaie.", "ex": "Ex. : des pommes contre un vélo… si le vendeur de vélos veut bien des pommes !"},
-  {"w": "Intérêts", "def": "Ce qu’on paie en plus quand on rembourse un crédit. C’est comme ça que la banque gagne de l’argent.", "ex": "Ex. : tu empruntes 10 000 €, tu rembourses environ 10 800 € au total."},
-  {"w": "Monnaie fiduciaire", "def": "Les billets et les pièces : l’argent qu’on peut toucher. Ça vient du latin fiducia, la confiance.", "ex": "Ex. : le billet de 20 € dans ta poche."}
+  {"w": "Intérêts", "def": "Ce qu’on paie en plus quand on rembourse un crédit. C’est comme ça que la banque gagne de l’argent.", "ex": "Ex. : tu empruntes 10 000 €, tu rembourses environ 10 800 € au total."}
 ];
 
 const INSTA_URL='https://www.instagram.com/macrofacile/';
@@ -572,7 +571,7 @@ function ask2(){
 // --- mots cliquables
 function lexTerms(){
   if(lexTerms.c)return lexTerms.c;
-  const skip=new Set(['bien','service','offre / demande','marché','monnaie','entreprises','ménages','état','banques']);const out=[];
+  const skip=new Set(['bien','service','offre','demande','marché','monnaie','entreprises','ménages','état','banques']);const out=[];
   LEXIQUE.forEach(x=>{const base=x.w.replace(/\s*\(.*\)\s*$/,'').trim();if(skip.has(base.toLowerCase()))return;
     const v=new Set([base]);if(/s$/i.test(base))v.add(base.slice(0,-1));else v.add(base+'s');
     if(base==='Impôts et taxes'){v.clear();v.add('impôts');v.add('impôt')}
