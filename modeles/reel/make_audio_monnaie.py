@@ -22,10 +22,10 @@ def gliss(f0,f1,dur):
 def ding(): return tone(1568,1.2,.002,.5,(1,2,3))+tone(2093,1.2,.002,.4)*.5
 sfx=np.zeros(N)
 for t in [5.2,13.2,21.0,29.4]: add(sfx,whoosh(),t-.1,.6)
-for t in [0.2,0.9, 5.2,5.8,6.3,7.4,7.9,9.4, 13.2,13.7,14.1,14.8,16.8,17.2, 21.3,22.4,23.5,25.0, 29.4,30.1,30.5]: add(sfx,pop(),t,.55)
+for t in [0.2,0.9, 5.2,5.8,6.3,7.4,7.9,9.4, 13.2,13.7,14.1,14.8,16.8,17.2, 21.3,21.7,22.5,22.9,23.7,24.1,25.2, 29.4,30.1,30.5]: add(sfx,pop(),t,.55)
 for t in [0.9,2.4,5.6,9.6,14.4,17.2,21.6,25.2,31.4]: add(sfx,blip(),t,.35)
 add(sfx,gliss(700,250,.5),14.8,.45); add(sfx,ding(),16.8,.35)
-add(sfx,chalk(.8),25.8,1.0); add(sfx,whoosh(),25.4,.5); add(sfx,ding(),30.9,.45)
+add(sfx,chalk(.8),26.0,1.0); add(sfx,whoosh(),25.6,.5); add(sfx,ding(),30.9,.45)
 # musique 2 : 90 bpm, Fa majeur, F-Dm-Bb-C, ukulele (Karplus-Strong) + piano doux + claquements de doigts
 bpm=90; beat=60/bpm; bar=4*beat
 mus=np.zeros(N)
