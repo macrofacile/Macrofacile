@@ -8,7 +8,7 @@ Fiche de référence pour continuer le projet dans une nouvelle conversation.
 - Compte Instagram + page Facebook **Macro facile !** (@macrofacile) : l'économie expliquée simplement, pour des gens qui découvrent.
 - Site : **macrofacile.fr** (GitHub Pages, dépôt `macrofacile/Macrofacile`, domaine OVH). Onglets : Accueil, Quiz, Séries, Lexique, Question ?
 - Téo écrit d'abord ses notes de cours (chapitre), puis on transforme en posts, quiz, lexique et reel.
-- Thèmes publiés : **LE PIB** (bleu `#BFDFFF`, 5 parties + bonus « Réel et nominal ») · **LA DEMANDE** (pistache `#DDF5B5`, 4 parties + bonus « Le paradoxe de l'épargne »).
+- Thèmes publiés : **LE PIB** (bleu `#BFDFFF`, 5 parties + bonus « Réel et nominal ») · **LA DEMANDE** (pistache `#DDF5B5`, 4 parties + bonus « Le paradoxe de l'épargne ») · **LA MONNAIE** (rose poudré `#FFE2EC`, 3 parties dont « Une journée avec Emma » + bonus « Pourquoi un billet de 20 € vaut 20 € ? »).
 
 ## Façon de travailler avec Téo
 
@@ -19,6 +19,17 @@ Fiche de référence pour continuer le projet dans une nouvelle conversation.
 - Penser au **débutant** : si une notion n'a pas été expliquée avant, elle ne va pas dans un quiz ou une slide.
 - « Remonte le texte » = **plus d'espace entre le titre et le bloc en dessous** (pas déplacer tout le contenu).
 - **À la fin de chaque thème : tout sauvegarder sur GitHub** (slides, modèles, règles mises à jour).
+
+## Leçons du thème LA MONNAIE
+
+- **Rester très simple** : si une notion pose plus de questions qu'elle n'en résout (création monétaire, réserves, investir ≠ placer…), on l'enlève. Mieux vaut moins de slides que tout le monde comprend.
+- Un thème peut être court : **2 parties + une 3e partie récap**.
+- Le récap ne doit pas répéter les posts : le raconter autrement (ex. **frise « Une journée avec Emma »**), et **pas sous forme de questions** (les questions, c'est le quiz du site).
+- Préférer des exemples connus de tous (passage du franc à l'euro en 2002) à des exemples lointains (Zimbabwe).
+- Ne pas utiliser un mot technique sur une slide sans l'avoir expliqué avant (ex. « fiduciaire »).
+- Personnage des exemples : **Emma** (ne plus utiliser Léa).
+- Les titres en gras d'une frise tiennent sur **une seule ligne**.
+- **Reel** : ne pas reprendre la mise en page des slides → grands dessins, gros mots qui apparaissent, exemples sous chaque mot ; **musique différente à chaque thème**.
 
 ## Structure d'un thème
 
@@ -61,7 +72,8 @@ Fiche de référence pour continuer le projet dans une nouvelle conversation.
 
 - Source : `modeles/site/source-index.html` → construit avec `modeles/site/build-site.sh` → `index.html` à la racine.
 - À chaque thème : ajouter les **nouveaux mots au lexique** (Téo valide la liste, il peut en retirer), un **quiz de 10 questions** (simples, vraies partout, pas de notion non expliquée, pas de doublon), la **série** dans l'onglet Séries, et mettre le quiz en avant sur l'accueil (carte « Nouveau » dans la couleur du thème).
-- Titre du quiz La Demande : « La DEMANDE ».
+- Titre des quiz : « La DEMANDE », « La MONNAIE » (article en minuscules, nom en majuscules).
+- Séries : repliables avec flèche, chaque carte dans la couleur de son thème, barre de recherche. Lexique : définitions repliables, recherche qui met en premier les mots qui commencent par le texte tapé. « Offre » et « Demande » cliquables une seule fois par quiz.
 - Pas d'annonce « Bientôt… » si ce n'est pas prévu.
 - Le site met jusqu'à 10 min à se mettre à jour (⌘ + Maj + R).
 
