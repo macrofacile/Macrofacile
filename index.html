@@ -111,6 +111,14 @@ h2{font-size:clamp(22px,4.5vw,26px)}
 .letter{font-family:var(--display);font-weight:600;font-size:20px;color:var(--muted);margin:6px 0 -4px}
 .word{border:1px solid var(--line);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:8px}
 .word .top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.wtog{all:unset;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;-webkit-tap-highlight-color:transparent}
+.wtog:focus-visible{outline:3px solid #FFD166;outline-offset:4px;border-radius:10px}
+.wchev{flex:none;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:#FFD166;border:2px solid var(--edge);box-shadow:0 3px 0 var(--edge);transition:transform .25s}
+.word.open .wchev{transform:rotate(180deg)}
+.wbody{display:none;flex-direction:column;gap:8px;padding-top:4px}
+.word.open .wbody{display:flex}
+.word:not(.open){gap:0}
+@media (max-width:600px){.word{padding:12px 14px}.word .w{font-size:20px}.wchev{width:30px;height:30px}.word .def{font-size:15.5px;line-height:1.5}.word .ex{font-size:14px;line-height:1.45}}
 .word .w{font-family:var(--display);font-weight:600;font-size:24px;line-height:1.1}
 .word .def{margin:0;font-weight:700}
 .word .ex{margin:0;font-size:15px;color:var(--muted)}
@@ -761,9 +769,13 @@ function lexique(){
     f.forEach((x,i)=>{
       if(i===first.length&&others.length){list.append(el('p',{class:'letter'},first.length?'Autres mots qui en parlent':'Mots qui en parlent'));last='*'}
       const l=norm(x.w)[0].toUpperCase(); if(i<first.length&&l!==last){list.append(el('p',{class:'letter'},l));last=l}
-      list.append(el('article',{class:'word'},
-        el('div',{class:'top'},el('span',{class:'w'},x.w)),
-        el('p',{class:'def'},x.def), el('p',{class:'ex'},x.ex)))});
+      const openIt=(t&&norm(x.w)===t)||f.length===1;
+      const art=el('article',{class:'word'+(openIt?' open':'')});
+      const ch=el('span',{class:'wchev','aria-hidden':'true'});ch.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#121212" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>';
+      const tg=el('button',{class:'wtog',type:'button','aria-expanded':openIt?'true':'false'},el('span',{class:'w'},x.w),ch);
+      tg.addEventListener('click',()=>{const o=art.classList.toggle('open');tg.setAttribute('aria-expanded',o?'true':'false')});
+      art.append(tg,el('div',{class:'wbody'},el('p',{class:'def'},x.def),el('p',{class:'ex'},x.ex)));
+      list.append(art)});
   }
   input.addEventListener('input',render);
   app.append(el('div',{style:'display:flex;flex-direction:column;gap:24px'},intro,el('section',{class:'card'},input,count,list)));
