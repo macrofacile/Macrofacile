@@ -80,3 +80,9 @@ Fiche de référence pour continuer le projet dans une nouvelle conversation.
 ## Reel
 
 - Voir `modeles/reel/LISEZMOI.md`. Même modèle à chaque thème : titre du thème au centre, prof qui dépasse en bas avec sa bulle, **même temps pour chaque slide** (~4,5 s), musique douce sans voix.
+
+## Couvertures (slide 1) — nouveau style (validé nov. 2026)
+- Titre du thème : 138px, contour noir 6px, ombre en biais (10px 18px)
+- « Partie X/N » : petit sticker jaune collé en haut à droite du titre
+- Sous-titre rouge : contour noir, 84px (66px si long)
+- Logo réduit (240px), pas d'image ni de déco

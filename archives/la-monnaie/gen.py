@@ -59,15 +59,17 @@ def cover(part, sub, dark=False):
     bg = K if dark else TH
     shadow = '#fff' if dark else K
     card_bg = TH if dark else '#fff'
-    sticker = f'<div style="position:absolute;right:-40px;top:-120px;background:{Y};border-radius:30px;padding:12px 40px 20px;transform:rotate(8deg);box-shadow:0 10px 0 {K};font-weight:700;font-size:96px;line-height:1">BONUS</div>' if dark else ''
-    partpill = '' if dark else f'<div style="background:{Y};color:{K};border-radius:999px;padding:14px 48px 22px;transform:rotate(2deg);box-shadow:0 10px 0 {K};font-weight:700;font-size:70px;line-height:1">Partie {part}/{NPARTS}</div>'
-    subpill = f'<div style="background:#FF6B6B;color:#fff;border-radius:32px;padding:16px 40px 24px;transform:rotate({2 if dark else -1.5}deg);box-shadow:0 10px 0 {K if not dark else K};font-weight:{500 if dark else 600};font-size:{76 if dark else 60}px;line-height:1.1;white-space:nowrap">{sub}</div>'
+    if dark:
+        sticker = f'<div style="position:absolute;right:-50px;top:-138px;background:{Y};border:5px solid {K};border-radius:30px;padding:12px 40px 20px;transform:rotate(8deg);box-shadow:7px 11px 0 {K};font-weight:700;font-size:96px;line-height:1">BONUS</div>'
+    else:
+        sticker = f'<div style="position:absolute;right:-30px;top:-92px;background:{Y};color:{K};border:5px solid {K};border-radius:999px;padding:14px 48px 22px;transform:rotate(7deg);box-shadow:7px 11px 0 {K};font-weight:700;font-size:50px;line-height:1;white-space:nowrap">Partie {part}/{NPARTS}</div>'
+    subpill = f'<div style="background:#FF6B6B;color:#fff;border:5px solid {K};border-radius:32px;padding:16px 40px 24px;transform:rotate({2 if dark else -1.5}deg);box-shadow:7px 11px 0 {shadow if dark else K};font-weight:{600 if dark else 700};font-size:{70 if dark else (84 if len(sub)<16 else 66)}px;line-height:1.1;white-space:nowrap">{sub}</div>'
     swipe = SWIPE.replace('stroke="#121212" stroke-width="4"', f'stroke="{"#fff" if dark else K}" stroke-width="4"').replace('fill="#fff"', f'fill="{K if dark else "#fff"}"')
     return f'''<div class="s" style="background:{bg}"><div class="in" style="justify-content:space-between;gap:0">
-<img src="../logo.png" style="width:300px;transform:rotate(-4deg);align-self:flex-start">
+<img src="../logo.png" style="width:240px;transform:rotate(-4deg);align-self:flex-start">
 <div style="display:flex;flex-direction:column;gap:64px;align-items:center">
-<div style="position:relative"><div style="background:{card_bg};border-radius:44px;padding:24px 56px 38px;transform:rotate(-2deg);box-shadow:0 14px 0 {shadow};font-weight:700;font-size:124px;line-height:1;white-space:nowrap">{THEME}</div>{sticker}</div>
-{partpill}{subpill}</div><div></div></div>{swipe}</div>'''
+<div style="position:relative"><div style="background:{card_bg};border:6px solid {K};border-radius:44px;padding:26px 50px 40px;transform:rotate(-2deg);box-shadow:10px 18px 0 {shadow};font-weight:700;font-size:138px;line-height:1;white-space:nowrap">{THEME}</div>{sticker}</div>
+{subpill}</div><div></div></div>{swipe}</div>'''
 
 def nextpost(n, t):
     return f'<div style="background:{K};color:#fff;border-radius:30px;padding:16px 30px 20px;display:flex;align-items:center;justify-content:space-between;gap:20px;transform:rotate(-1deg)"><div style="display:flex;flex-direction:column;gap:6px"><span style="color:{Y};font-weight:700;font-size:30px">Prochain post · Partie {n}/{NPARTS}</span><span style="font-weight:600;font-size:42px;line-height:1.1">{t}</span></div><span style="font-weight:700;font-size:64px;color:{Y}">→</span></div>'
@@ -113,9 +115,9 @@ def jar(w=230, full=True):
 <text x="110" y="129" text-anchor="middle" font-family="F" font-weight="700" font-size="22" fill="#121212" stroke="none">ÉPARGNE</text>
 <path d="M50 160 v28" stroke="#fff" stroke-width="7" opacity=".9"/>
 </svg>"""
+def line(a,b,bg): return f'<div class="row" style="background:{bg};justify-content:space-between;padding:14px 26px"><b style="font-size:38px">{a}</b><b style="font-size:42px">{b}</b></div>'
 
 P = {}
-def line(a,b,bg): return f'<div class="row" style="background:{bg};justify-content:space-between;padding:14px 26px"><b style="font-size:38px">{a}</b><b style="font-size:42px">{b}</b></div>'
 
 UL = 'text-decoration:underline;text-decoration-color:#FFD166;text-decoration-thickness:10px;text-underline-offset:12px;text-decoration-skip-ink:none'
 quizblock = f'<div style="background:{K};color:#fff;border-radius:30px;padding:16px 30px 20px;display:flex;align-items:center;justify-content:space-between;gap:20px;transform:rotate(-1deg)"><div style="display:flex;flex-direction:column;gap:6px"><span style="color:{Y};font-weight:700;font-size:30px">Teste-toi · quiz gratuit</span><span style="font-weight:600;font-size:42px;line-height:1.1">macrofacile.fr</span></div><span style="font-weight:700;font-size:64px;color:{Y}">→</span></div>'

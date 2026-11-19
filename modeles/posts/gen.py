@@ -2,6 +2,8 @@ import os, sys, json
 TH = sys.argv[1] if len(sys.argv) > 1 else '#C9F2DF'
 OUT = sys.argv[2] if len(sys.argv) > 2 else 'slides'
 os.makedirs(OUT, exist_ok=True)
+THEME='LA MONNAIE'
+NPARTS=3
 K = '#121212'; Y = '#FFD166'; GP = '#BDEFC9'; RP = '#FFC9C9'; VP = '#DCD3FF'; BP = '#CDE6FF'; OP = '#FFE0B8'
 
 CSS = f"""@font-face{{font-family:F;src:url(../Fredoka.ttf);font-weight:300 700}}
@@ -57,18 +59,20 @@ def cover(part, sub, dark=False):
     bg = K if dark else TH
     shadow = '#fff' if dark else K
     card_bg = TH if dark else '#fff'
-    sticker = f'<div style="position:absolute;right:-10px;top:-92px;background:{Y};border-radius:30px;padding:12px 40px 20px;transform:rotate(8deg);box-shadow:0 10px 0 {K};font-weight:700;font-size:96px;line-height:1">BONUS</div>' if dark else ''
-    partpill = '' if dark else f'<div style="background:{Y};color:{K};border-radius:999px;padding:14px 48px 22px;transform:rotate(2deg);box-shadow:0 10px 0 {K};font-weight:700;font-size:70px;line-height:1">Partie {part}/4</div>'
-    subpill = f'<div style="background:#FF6B6B;color:#fff;border-radius:32px;padding:16px 40px 24px;transform:rotate({2 if dark else -1.5}deg);box-shadow:0 10px 0 {K if not dark else K};font-weight:{500 if dark else 600};font-size:{76 if dark else 60}px;line-height:1.1;white-space:nowrap">{sub}</div>'
+    if dark:
+        sticker = f'<div style="position:absolute;right:-50px;top:-138px;background:{Y};border:5px solid {K};border-radius:30px;padding:12px 40px 20px;transform:rotate(8deg);box-shadow:7px 11px 0 {K};font-weight:700;font-size:96px;line-height:1">BONUS</div>'
+    else:
+        sticker = f'<div style="position:absolute;right:-30px;top:-92px;background:{Y};color:{K};border:5px solid {K};border-radius:999px;padding:14px 48px 22px;transform:rotate(7deg);box-shadow:7px 11px 0 {K};font-weight:700;font-size:50px;line-height:1;white-space:nowrap">Partie {part}/{NPARTS}</div>'
+    subpill = f'<div style="background:#FF6B6B;color:#fff;border:5px solid {K};border-radius:32px;padding:16px 40px 24px;transform:rotate({2 if dark else -1.5}deg);box-shadow:7px 11px 0 {shadow if dark else K};font-weight:{600 if dark else 700};font-size:{70 if dark else (84 if len(sub)<16 else 66)}px;line-height:1.1;white-space:nowrap">{sub}</div>'
     swipe = SWIPE.replace('stroke="#121212" stroke-width="4"', f'stroke="{"#fff" if dark else K}" stroke-width="4"').replace('fill="#fff"', f'fill="{K if dark else "#fff"}"')
     return f'''<div class="s" style="background:{bg}"><div class="in" style="justify-content:space-between;gap:0">
-<img src="../logo.png" style="width:300px;transform:rotate(-4deg);align-self:flex-start">
-<div style="display:flex;flex-direction:column;gap:50px;align-items:center">
-<div style="position:relative"><div style="background:{card_bg};border-radius:44px;padding:24px 56px 38px;transform:rotate(-2deg);box-shadow:0 14px 0 {shadow};font-weight:700;font-size:124px;line-height:1;white-space:nowrap">LA DEMANDE</div>{sticker}</div>
-{partpill}{subpill}</div><div></div></div>{swipe}</div>'''
+<img src="../logo.png" style="width:240px;transform:rotate(-4deg);align-self:flex-start">
+<div style="display:flex;flex-direction:column;gap:64px;align-items:center">
+<div style="position:relative"><div style="background:{card_bg};border:6px solid {K};border-radius:44px;padding:26px 50px 40px;transform:rotate(-2deg);box-shadow:10px 18px 0 {shadow};font-weight:700;font-size:138px;line-height:1;white-space:nowrap">{THEME}</div>{sticker}</div>
+{subpill}</div><div></div></div>{swipe}</div>'''
 
 def nextpost(n, t):
-    return f'<div style="background:{K};color:#fff;border-radius:30px;padding:16px 30px 20px;display:flex;align-items:center;justify-content:space-between;gap:20px;transform:rotate(-1deg)"><div style="display:flex;flex-direction:column;gap:6px"><span style="color:{Y};font-weight:700;font-size:30px">Prochain post · Partie {n}/4</span><span style="font-weight:600;font-size:42px;line-height:1.1">{t}</span></div><span style="font-weight:700;font-size:64px;color:{Y}">→</span></div>'
+    return f'<div style="background:{K};color:#fff;border-radius:30px;padding:16px 30px 20px;display:flex;align-items:center;justify-content:space-between;gap:20px;transform:rotate(-1deg)"><div style="display:flex;flex-direction:column;gap:6px"><span style="color:{Y};font-weight:700;font-size:30px">Prochain post · Partie {n}/{NPARTS}</span><span style="font-weight:600;font-size:42px;line-height:1.1">{t}</span></div><span style="font-weight:700;font-size:64px;color:{Y}">→</span></div>'
 
 def slide(inner, footer, bg=None):
     return f'<div class="s" style="background:{bg or TH}"><div class="in">{inner}</div>{footer}</div>'
@@ -111,147 +115,127 @@ def jar(w=230, full=True):
 <text x="110" y="129" text-anchor="middle" font-family="F" font-weight="700" font-size="22" fill="#121212" stroke="none">ÉPARGNE</text>
 <path d="M50 160 v28" stroke="#fff" stroke-width="7" opacity=".9"/>
 </svg>"""
+def line(a,b,bg): return f'<div class="row" style="background:{bg};justify-content:space-between;padding:14px 26px"><b style="font-size:38px">{a}</b><b style="font-size:42px">{b}</b></div>'
 
 P = {}
+
+UL = 'text-decoration:underline;text-decoration-color:#FFD166;text-decoration-thickness:10px;text-underline-offset:12px;text-decoration-skip-ink:none'
+quizblock = f'<div style="background:{K};color:#fff;border-radius:30px;padding:16px 30px 20px;display:flex;align-items:center;justify-content:space-between;gap:20px;transform:rotate(-1deg)"><div style="display:flex;flex-direction:column;gap:6px"><span style="color:{Y};font-weight:700;font-size:30px">Teste-toi · quiz gratuit</span><span style="font-weight:600;font-size:42px;line-height:1.1">macrofacile.fr</span></div><span style="font-weight:700;font-size:64px;color:{Y}">→</span></div>'
+def bars():
+    return f'''<div style="display:flex;align-items:flex-end;justify-content:center;gap:60px;height:330px">
+<div style="display:flex;flex-direction:column;align-items:center;gap:12px"><b style="font-size:46px">~15 %</b><div style="width:170px;height:60px;background:{OP};border:5px solid {K};border-radius:14px 14px 0 0"></div><span style="font-weight:600;font-size:30px">Billets et pièces</span></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:12px"><b style="font-size:46px">~85 %</b><div style="width:170px;height:230px;background:{BP};border:5px solid {K};border-radius:14px 14px 0 0"></div><span style="font-weight:600;font-size:30px">Argent sur des comptes</span></div></div>'''
+def billet(w=300):
+    return f'''<svg width="{w}" viewBox="0 0 240 130" fill="none" stroke="#121212" stroke-width="6" stroke-linejoin="round">
+<rect x="6" y="6" width="228" height="118" rx="12" fill="#BDEFC9"/><rect x="22" y="22" width="196" height="86" rx="8" fill="#fff" stroke-width="4"/>
+<circle cx="70" cy="65" r="26" fill="#FFD166" stroke-width="4"/><text x="70" y="75" text-anchor="middle" font-family="F" font-weight="700" font-size="28" fill="#121212" stroke="none">€</text>
+<text x="160" y="80" text-anchor="middle" font-family="F" font-weight="700" font-size="44" fill="#121212" stroke="none">20</text></svg>'''
+def troc_old(w=330):
+    return f'''<svg width="{w}" viewBox="0 0 300 150" fill="none" stroke="#121212" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+<g transform="rotate(-18 70 80)"><rect x="10" y="62" width="130" height="36" rx="18" fill="#F2C29B"/><path d="M40 70 l10 20 M70 70 l10 20 M100 70 l10 20" stroke-width="5"/></g>
+<path d="M190 70 h44 l10 26 h40 c8 0 10 14 0 16 h-94 Z" fill="#B9A7FF"/><path d="M190 112 h94" />
+<path d="M150 50 l30 30 M180 50 l-30 30" stroke="#D63031" stroke-width="9"/></svg>'''
+
+def troc(w=330):
+    return f"""<svg width="{w}" viewBox="0 0 340 150" fill="none" stroke="#121212" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="50" cy="85" r="34" fill="#FF6B6B"/><path d="M50 51 c0-12 6-20 14-24"/><path d="M58 40 c10-10 24-8 28 0 c-10 6-20 6-28 0 Z" fill="#7FDDB5"/>
+<path d="M115 60 l30 30 M145 60 l-30 30" stroke="#D63031" stroke-width="9"/>
+<circle cx="210" cy="108" r="30" fill="#fff"/><circle cx="300" cy="108" r="30" fill="#fff"/>
+<path d="M210 108 L238 62 L280 62 L300 108" stroke="#FF6B6B" stroke-width="8"/><path d="M238 62 L256 108 L280 62" stroke="#FF6B6B" stroke-width="8"/>
+<path d="M210 108 H256"/><path d="M228 48 H250" stroke-width="8"/><path d="M238 62 L232 48"/>
+<path d="M280 62 L276 44 H292" stroke-width="7"/><circle cx="256" cy="108" r="5" fill="#121212"/>
+</svg>"""
+
 # ---------- PARTIE 1 ----------
 F = lambda n, t=4: foot('PARTIE 1', n, t)
 P['p1'] = [
- cover(1, 'Qui achète ?'),
- slide(f'''<div class="tag">L'idée</div><div class="mid">
-<p class="big" style="margin-bottom:70px">Tout ce qu'on produit dans le pays…<br><span class="hl">finit par être acheté.</span></p>
-<div class="card"><p class="txt" style="font-size:44px">Le PIB, c'est donc aussi<br><b style="font-weight:700">la somme de tous les achats finaux.</b></p><p class="txt" style="font-size:32px;line-height:1.4">Ex. : ta baguette, la machine d'une usine,<br>l'école construite par l'État…</p></div>
-<p class="txt" style="font-weight:600;font-size:56px"><span style="text-decoration:underline;text-decoration-color:#FFD166;text-decoration-thickness:10px;text-underline-offset:12px;text-decoration-skip-ink:none">Mais acheté… par qui ?</span></p></div>''', F(2)),
- slide(f'''<div class="tag">Les 4 acheteurs</div><div class="mid" style="gap:22px">
-{row('menage','Les ménages','→ la consommation : courses, voiture, vacances',GP)}
-{row('usine','Les entreprises','→ l\'investissement : machines, terrains, bâtiments',VP)}
-{row('etat','L\'État','→ les dépenses publiques : écoles, hôpitaux, avions',BP)}
-{row('monde','L\'étranger','→ les exportations : du vin français vendu à Sydney',OP)}
-<div style="display:flex;align-items:center;gap:18px;margin-top:14px"><div style="flex:1;border-top:5px dashed {K}"></div><b style="font-size:36px">+ 1 cas à part</b><div style="flex:1;border-top:5px dashed {K}"></div></div>
-{row('carton','Les stocks','produit mais pas vendu → personne ne l\'a acheté, mais ça compte quand même dans le PIB<br><b style="font-size:32px;font-weight:600">Ex. : 100 vélos produits, 90 vendus → 10 en stock</b>','#fff')}</div>''', F(3)),
- slide(f'''<div class="tag">L'étranger</div><div class="mid" style="gap:30px;margin:10px 0 0">
-<div style="display:flex;flex-direction:column;gap:30px;margin-top:-10px">
-<div><div style="font-weight:600;font-size:48px;line-height:1.2;white-space:nowrap">On vend à l'étranger → <span class="hl">exportations</span></div><div style="font-weight:500;font-size:32px;margin-top:4px">Ex. : la France vend des Airbus et du vin</div></div>
-<div><div style="font-weight:600;font-size:48px;line-height:1.2;white-space:nowrap">On achète à l'étranger → <span class="hl">importations</span></div><div style="font-weight:500;font-size:32px;margin-top:4px">Ex. : la France achète des iPhone et du pétrole</div></div></div>
-<div class="card"><span style="text-align:left;font-weight:600;font-size:40px">La différence, c'est la balance commerciale</span>
-{row('up','Excédent → on vend plus','Ex. : on vend pour 120, on achète pour 100',GP)}
-{row('down','Déficit → on achète plus','Ex. : on vend pour 100, on achète pour 120',RP)}</div>
-<p class="txt" style="font-size:42px;font-weight:600;text-align:center"><span style="text-decoration:underline;text-decoration-color:#FFD166;text-decoration-thickness:9px;text-underline-offset:11px;text-decoration-skip-ink:none">La France est en déficit depuis des années.</span></p>
-{nextpost(2,'Pourquoi ils achètent ?')}</div>''', F(4)),
- 
+ cover(1, 'C\'est quoi ?'),
+ slide(f'''<div class="tag">C'est quoi ?</div><div class="mid" style="gap:30px;margin:auto 0">
+<p class="big" style="font-size:58px;margin-bottom:70px">La monnaie, c'est<br><span class="hl">ce qui sert à payer</span></p>
+{row('euro','Les billets et les pièces','l\'argent qu\'on peut toucher<i class="ex">ex. : le billet de 20 € dans ta poche</i>',OP)}
+{row('menage','L\'argent sur ton compte','on ne le touche pas, mais c\'est aussi de la monnaie<i class="ex">ex. : tu paies ton kebab par carte → −10 € sur ton compte</i>',BP)}</div>''', F(2)),
+ slide(f'''<div class="tag">Sans monnaie…</div><div class="mid" style="gap:40px;margin:auto 0">
+<p class="big" style="font-size:58px;margin-bottom:20px">… il faudrait faire<br><span class="hl">du troc</span></p>
+<div style="display:flex;justify-content:center">{troc(500)}</div>
+<div class="card"><p class="txt" style="font-size:40px;line-height:1.4">Tu as des pommes et tu veux un vélo…<br><b>mais le vendeur ne veut pas<br>de pommes !</b></p></div></div>''', F(3)),
+ slide(f'''<div class="tag">À quoi elle sert ?</div><div class="mid" style="gap:24px;margin:auto 0">
+{row('euro','1 · Payer','tout le monde l\'accepte<i class="ex">ex. : ta baguette à 1,20 €</i>',OP)}
+{row('pourcent','2 · Comparer les prix','tout se mesure en euros<i class="ex">ex. : un jean 40 €, un vélo 300 €</i>',BP)}
+{row('cle','3 · Garder pour plus tard','on peut la mettre de côté<i class="ex">ex. : Emma met 100 € de côté pour ses vacances</i>',VP)}
+{nextpost(2,'Les banques et la monnaie')}</div>''', F(4)),
 ]
+
 # ---------- PARTIE 2 ----------
-F = lambda n, t=5: foot('PARTIE 2', n, t)
-def line(a,b,bg): return f'<div class="row" style="background:{bg};justify-content:space-between;padding:14px 26px"><b style="font-size:38px">{a}</b><b style="font-size:42px">{b}</b></div>'
+F = lambda n, t=4: foot('PARTIE 2', n, t)
 P['p2'] = [
- cover(2, 'Pourquoi ils achètent ?'),
- slide(f'''<div class="tag">Les ménages</div><div class="mid" style="gap:40px;margin:50px 0 auto">
-<p class="big" style="font-size:52px">Ils consomment selon leur<br><span class="hl">revenu disponible</span></p>
-<div class="card" style="gap:12px"><span style="text-align:center;font-weight:600;font-size:34px">= ce qui reste vraiment pour vivre</span>
-{line('Salaire','2 000 €',BP)}{line('− Impôts','200 €',RP)}{line('+ Aides (ex. : APL)','100 €',GP)}{line('Revenu disponible','1 900 €',Y)}</div>
-<div style="display:flex;gap:18px">
-<div class="row" style="background:{GP};flex:1;flex-direction:column;gap:2px;padding:16px"><b style="font-size:34px">Revenu ↑</b><span style="font-size:28px">→ on consomme plus</span></div>
-<div class="row" style="background:{RP};flex:1;flex-direction:column;gap:2px;padding:16px"><b style="font-size:34px">Revenu ↓</b><span style="font-size:28px">→ on consomme moins</span></div></div>
-<p class="txt" style="font-size:32px">Ex. : une prime de 300 € → un resto, un nouveau jean…</p></div>''', F(2)),
- slide(f'''<div class="tag">Les entreprises</div><div class="mid" style="gap:40px;margin:50px 0 auto">
-<p class="big" style="font-size:52px">Elles <span class="hl">investissent</span> :<br>machines, bâtiments…</p>
-<p class="txt" style="font-size:34px;margin-top:-14px">Ex. : une boulangerie achète un nouveau four</p>
-<div class="card" style="margin-top:50px;gap:26px;padding:40px 36px 44px"><span style="text-align:center;font-weight:600;font-size:38px">Ça dépend surtout de…</span>
-{row('pourcent','Les taux d\'intérêt','taux bas → emprunter coûte moins cher → on investit plus<i class="ex">Ex. : emprunter 10&nbsp;000&nbsp;€ coûte 200&nbsp;€/an à 2&nbsp;%, 500&nbsp;€/an à 5&nbsp;%</i>',VP)}
-{row('cle','L\'usure des machines','une machine trop vieille → il faut la remplacer<i class="ex">Ex. : le four a 15 ans et tombe en panne</i>',OP)}</div></div>''', F(3)),
- slide(f'''<div class="tag">L'État</div><div class="mid" style="gap:40px;margin:50px 0 auto">
-<p class="big" style="font-size:52px">Ses dépenses et ses impôts sont <span class="hl">décidés chaque année</span> dans le budget</p>
-<p class="txt" style="font-size:36px;margin-top:-10px">→ c'est la <b>politique budgétaire</b></p>
-<div class="card" style="gap:16px">
-{row('etat','Il dépense','Ex. : construire une école, acheter des avions, payer les profs',BP)}
-{row('euro','Il prélève des impôts','Ex. : la TVA sur tes courses, l\'impôt sur le revenu',OP)}</div>
-<p class="txt" style="font-size:34px">Ex. : en crise, l'État peut dépenser plus pour relancer l'économie</p></div>''', F(4)),
- slide(f'''<div class="tag">L'État : attention !</div><div class="mid" style="gap:36px;margin:60px 0 auto">
-<p class="big" style="font-size:50px;margin-bottom:24px">L'État compte dans la demande<br>seulement quand il <span class="hl">achète</span></p>
-{row('up','Ça compte','Ex. : le salaire d\'un prof → l\'État achète son travail<i class="ex" style="font-weight:400;font-size:32px">Ex. : un nouvel hôpital → l\'État achète sa construction</i>',GP)}
-{row('down','Ça ne compte pas','Ex. : les APL, le chômage → l\'État donne de l\'argent, il n\'achète rien<i class="ex" style="margin-top:12px">↳ cet argent va aux ménages : c\'est eux qui le dépensent (le « + Aides » du revenu disponible)</i>',RP)}
-{nextpost(3,'L\'effet boule de neige')}</div>''', F(5)),
+ cover(2, 'Les banques'),
+ slide(f'''<div class="tag">Ta banque, elle fait quoi ?</div><div class="mid" style="gap:70px;margin:auto 0">
+{row('etat','Elle garde ton argent','ex. : ton salaire arrive sur ton compte',BP)}
+{row('euro','Elle te permet de payer','ex. : ta carte bancaire, un virement',OP)}
+{row('up','Elle prête','ex. : un crédit pour une voiture',GP)}</div>''', F(2)),
+ slide(f'''<div class="tag">Le crédit, c'est quoi ?</div><div class="mid" style="gap:16px;margin:auto 0">
+{row('menage','Emma veut une voiture à 10 000 €','mais elle n\'a pas tout cet argent',BP)}<div class="arrow">↓</div>
+{row('etat','La banque lui prête 10 000 €','Emma achète la voiture tout de suite',VP)}<div class="arrow">↓</div>
+{row('euro','Emma rembourse chaque mois','ex. : environ 225 €/mois pendant 4 ans',OP)}
+<p class="big" style="font-size:46px;margin:26px 0 10px">Au total, elle rembourse un peu plus :<br><span class="hl">ce sont les intérêts</span></p>
+<p class="txt" style="font-size:34px">→ C'est comme ça que la banque gagne de l'argent</p></div>''', F(3)),
+ slide(f'''<div class="tag">Ce que ça permet</div><div class="mid" style="gap:36px;margin:auto 0">
+<p class="big" style="font-size:52px;margin-bottom:70px">Acheter maintenant…<br><span class="hl">et payer petit à petit</span></p>
+{row('etat','Une famille achète une maison','sans attendre 20 ans d\'économies',BP)}
+{row('usine','Une entreprise ouvre un magasin','et embauche',GP)}
+{nextpost(3,'Une journée avec Emma')}</div>''', F(4)),
 ]
-# ---------- PARTIE 3 ----------
+
+# ---------- PARTIE 3 : UNE JOURNEE ----------
 F = lambda n, t=5: foot('PARTIE 3', n, t)
-def box(t, bg, ex=''):
-    e = f'<span style="font-weight:500;font-size:30px;line-height:1.2">{ex}</span>' if ex else ''
-    return f'<div class="row" style="background:{bg};justify-content:center;text-align:center;flex-direction:column;gap:6px;padding:28px 20px"><b style="font-size:42px;line-height:1.15">{t}</b>{e}</div>'
+def moment(h,title,sub,tag,bg):
+    return f'''<div style="display:flex;gap:22px;align-items:stretch">
+<div style="display:flex;flex-direction:column;align-items:center;width:150px;flex:none"><div style="background:{K};color:{Y};border-radius:999px;padding:10px 22px 16px;font-weight:700;font-size:52px">{h}</div><div style="flex:1;width:6px;background:{K};margin-top:8px;border-radius:3px"></div></div>
+<div style="flex:1;background:{bg};border-radius:30px;box-shadow:0 9px 0 {K};padding:40px 32px 44px;display:flex;flex-direction:column;gap:14px;margin-bottom:70px">
+<b style="font-size:42px;line-height:1.15;white-space:nowrap">{title}</b><span style="font-size:40px;line-height:1.3">{sub}</span>
+<span style="align-self:flex-start;background:#fff;border-radius:999px;padding:6px 22px 10px;font-weight:700;font-size:36px;margin-top:6px">→ {tag}</span></div></div>'''
 P['p3'] = [
- cover(3, 'L\'effet boule de neige'),
- slide(f'''<div class="tag">Tout part de là</div><div class="mid" style="gap:64px;margin:90px 0 auto">
-<p class="big" style="font-size:58px">Quand les gens achètent plus…<br><span class="hl" style="white-space:nowrap">la demande augmente.</span></p>
-<p class="txt" style="font-size:42px;margin-top:-30px">→ et les entreprises produisent plus</p>
-<div class="card" style="gap:18px;padding:40px 36px 44px"><span style="font-weight:600;font-size:40px;text-align:center">Ex. : à Noël</span>
-{row('menage','Les gens achètent plus de jouets','→ la demande de jouets augmente',GP)}
-{row('usine','Les usines produisent plus','elles embauchent des intérimaires',VP)}</div>
-<p class="txt" style="font-size:40px">Et ces intérimaires… <b>vont dépenser leur salaire.</b></p></div>''', F(2)),
- slide(f'''<div class="tag">La boule de neige</div><div class="mid" style="gap:16px;margin:40px 0 auto">
-{box('La demande monte','#fff','Ex. : les gens achètent plus de vélos')}<div class="arrow">↓</div>
-{box('Les entreprises produisent plus',GP,'l\'usine fabrique plus de vélos')}<div class="arrow">↓</div>
-{box('Les revenus montent',BP,'elle embauche → de nouveaux salaires')}<div class="arrow">↓</div>
-{box('Les gens consomment plus',Y,'les ouvriers vont au resto, font les courses…')}
-<p class="txt" style="font-size:40px;font-weight:600;margin-top:10px">… et la demande remonte encore ↺</p></div>''', F(3)),
- slide(f'''<div class="tag">Un autre exemple</div><div class="mid" style="gap:16px;margin:40px 0 auto">
-{row('pont','L\'État construit un pont','il paie une entreprise → de la demande en plus',BP)}<div class="arrow">↓</div>
-{row('menage','L\'entreprise embauche','des ouvriers touchent un salaire',GP)}<div class="arrow">↓</div>
-{row('euro','Les ouvriers dépensent','resto, courses, sorties',OP)}<div class="arrow">↓</div>
-{row('up','Les commerces vendent plus','la demande augmente encore → ils embauchent',Y)}
-<p class="txt" style="font-size:36px;margin-top:14px">→ 1 € dépensé au départ peut créer <b>plus d'1 €</b> d'activité au total</p></div>''', F(4)),
- slide(f'''<div class="tag">Et à l'envers ?</div><div class="mid" style="gap:80px;margin:auto 0">
-<p class="big" style="font-size:56px">Ça marche aussi <span class="hl">dans l'autre sens.</span></p>
-<div class="card" style="background:{RP};gap:24px;padding:48px 36px 52px"><div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:12px 10px"><span style="display:inline-flex;align-items:center;gap:8px;background:#fff;border-radius:999px;padding:6px 16px 8px;font-weight:700;font-size:32px">Demande<svg width="30" height="30" viewBox="0 0 30 30" style="flex:none"><circle cx="15" cy="15" r="15" fill="#D63031"/><path d="M15 7 V22 M9 16 L15 22 L21 16" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span style="font-weight:700;font-size:34px">→</span><span style="display:inline-flex;align-items:center;gap:8px;background:#fff;border-radius:999px;padding:6px 16px 8px;font-weight:700;font-size:32px">Production<svg width="30" height="30" viewBox="0 0 30 30" style="flex:none"><circle cx="15" cy="15" r="15" fill="#D63031"/><path d="M15 7 V22 M9 16 L15 22 L21 16" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span style="font-weight:700;font-size:34px">→</span><span style="display:inline-flex;align-items:center;gap:8px;background:#fff;border-radius:999px;padding:6px 16px 8px;font-weight:700;font-size:32px">Licenciements</span><span style="font-weight:700;font-size:34px">→</span><span style="display:inline-flex;align-items:center;gap:8px;background:#fff;border-radius:999px;padding:6px 16px 8px;font-weight:700;font-size:32px">Revenus<svg width="30" height="30" viewBox="0 0 30 30" style="flex:none"><circle cx="15" cy="15" r="15" fill="#D63031"/><path d="M15 7 V22 M9 16 L15 22 L21 16" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span style="font-weight:700;font-size:34px">→</span><span style="display:inline-flex;align-items:center;gap:8px;background:#fff;border-radius:999px;padding:6px 16px 8px;font-weight:700;font-size:32px">Consommation<svg width="30" height="30" viewBox="0 0 30 30" style="flex:none"><circle cx="15" cy="15" r="15" fill="#D63031"/><path d="M15 7 V22 M9 16 L15 22 L21 16" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span style="font-weight:700;font-size:38px">↺</span></div>
-<span style="font-weight:600;font-size:32px;text-align:center;margin-top:8px">Ex. : une usine ferme → 500 chômeurs → ils achètent moins → la demande baisse dans les commerces du coin → ils licencient aussi</span></div>
-{nextpost(4,'Le récap')}</div>''', F(5)),
-]
-# ---------- PARTIE 4 : RECAP ----------
-F = lambda n, t=5: foot('PARTIE 4', n, t)
-def mini(icon,t,sub,bg): return row(icon,t,sub,bg)
-P['p4'] = [
- cover(4, 'Le récap'),
- slide(f'''<div class="tag">1 · Qui achète ?</div><div class="mid" style="gap:26px;margin:auto 0">
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:26px">
-{tile('menage','Les ménages','consomment','ex. : courses, vacances',GP,-2)}
-{tile('usine','Les entreprises','investissent','ex. : un nouveau four',VP,1.5)}
-{tile('etat','L\'État','dépense','ex. : une école',BP,1.5)}
-{tile('monde','L\'étranger','achète nos exportations','ex. : des Airbus',OP,-2)}</div>
-<div style="display:flex;align-items:center;gap:20px;background:#fff;border:4px dashed {K};border-radius:28px;padding:18px 26px">{ic('carton')}<div style="font-weight:500;font-size:32px;line-height:1.3"><b>+ les stocks</b> : produit mais pas vendu<br>ex. : 10 vélos en réserve</div></div></div>''', F(2)),
- slide(f'''<div class="tag">2 · Pourquoi ils achètent ?</div><div class="mid" style="gap:44px;margin:auto 0">
-<p class="big" style="font-size:44px;font-weight:500">Ce qui les fait acheter plus… ou moins</p>
-{why('Les ménages','leur revenu disponible','ex. : une prime → un resto en plus',GP)}
-{why('Les entreprises','les taux d\'intérêt et l\'usure','ex. : taux bas → on achète le four',VP)}
-{why('L\'État','son budget annuel','attention : seulement ce qu\'il achète (pas les APL)',BP)}</div>''', F(3)),
- slide(f'''<div class="tag">3 · La boule de neige</div><div class="mid" style="gap:24px;margin:auto 0">
-{box('La demande monte','#fff')}<div class="arrow">↓</div>{box('Les entreprises produisent plus',GP)}<div class="arrow">↓</div>{box('Les revenus montent',BP)}<div class="arrow">↓</div>{box('Les gens consomment plus',Y)}
-<p class="txt" style="font-size:38px;font-weight:600;margin-top:10px">… et ça repart ↺ (dans les deux sens !)</p></div>''', F(4)),
+ cover(3, 'Une journée avec Emma'),
+ slide(f'''<div class="tag">Le matin</div><div class="mid" style="gap:10px;margin:60px 0 auto">
+{moment('8h','Son salaire tombe','elle ne le touche pas… mais c\'est bien de la monnaie','l\'argent sur un compte',BP)}
+{moment('12h','Sandwich à 6 € par carte','le resto accepte, comme tout le monde','payer',OP)}</div>''', F(2)),
+ slide(f'''<div class="tag">L'après-midi</div><div class="mid" style="gap:10px;margin:60px 0 auto">
+{moment('15h','Elle hésite entre 2 jeans','un à 40 €, l\'autre à 60 € : facile de choisir','comparer',GP)}
+{moment('18h','Elle met 100 € de côté','pour ses vacances cet été','garder pour plus tard',VP)}</div>{deco(jar(190),445,140,-5)}''', F(3)),
+ slide(f'''<div class="tag">Le soir</div><div class="mid" style="gap:10px;margin:60px 0 auto">
+{moment('19h','Un crédit pour une voiture','la banque lui prête 10 000 €, elle rembourse chaque mois','les banques',Y)}
+<p class="txt" style="font-size:40px;margin-top:20px">… avec un peu plus à rembourser :<br><b>les intérêts</b></p>
+<div style="display:flex;justify-content:center;margin-top:30px;transform:rotate(-3deg)"><svg width="520" viewBox="0 0 300 140" fill="none" stroke="#121212" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"><path d="M20 96 V74 c0-8 6-12 14-14 l30-6 l26-26 c6-6 12-8 20-8 h70 c10 0 16 4 22 12 l20 26 l40 8 c8 2 12 8 12 16 v14 Z" fill="#FF9E9E"/><path d="M98 52 l18-18 h40 v18 Z M168 34 h18 l14 18 h-32 Z" fill="#CDE6FF"/><circle cx="76" cy="100" r="20" fill="#121212"/><circle cx="76" cy="100" r="7" fill="#fff" stroke="none"/><circle cx="226" cy="100" r="20" fill="#121212"/><circle cx="226" cy="100" r="7" fill="#fff" stroke="none"/></svg></div></div>''', F(4)),
  slide(f'''<div class="tag">À retenir</div><div class="mid" style="gap:60px;margin:auto 0">
-<p class="big" style="font-size:76px">C'est la demande<br><span class="hl">qui fait tourner</span><br>l'économie.</p>
-<p class="txt" style="font-size:40px">Quiz et lexique gratuits sur<br><b>macrofacile.fr</b></p>
-{nextpost('B','Le paradoxe de l\'épargne').replace('Partie B/4','Bonus')}</div>''', F(5)),
+<p class="big" style="font-size:60px;margin-bottom:40px">La monnaie est partout<br><span class="hl">dans ta journée.</span></p>
+<p class="txt" style="font-size:40px">Payer, comparer, garder…<br>et les banques la font circuler.</p>
+{nextpost('B','Pourquoi un billet de 20 € vaut 20 € ?').replace('Partie B/3','Bonus')}</div>''', F(5)),
 ]
+
 # ---------- BONUS ----------
 F = lambda n, t=5: foot('', n, t, bonus=True)
-quizblock = f'<div style="background:{K};color:#fff;border-radius:30px;padding:16px 30px 20px;display:flex;align-items:center;justify-content:space-between;gap:20px;transform:rotate(-1deg)"><div style="display:flex;flex-direction:column;gap:6px"><span style="color:{Y};font-weight:700;font-size:30px">Teste-toi · quiz gratuit</span><span style="font-weight:600;font-size:42px;line-height:1.1">macrofacile.fr</span></div><span style="font-weight:700;font-size:64px;color:{Y}">→</span></div>'
 P['bonus'] = [
- cover(0, 'Le paradoxe<br>de l\'épargne', dark=True).replace('white-space:nowrap">Le paradoxe','white-space:normal;text-align:center">Le paradoxe'),
- slide(f'''<div class="tag">Imagine…</div><div class="mid" style="gap:56px;margin:auto 0">
-<p class="big" style="font-size:66px;margin-bottom:50px">Et si tout le monde<br><span style="text-decoration:underline;text-decoration-color:#FFD166;text-decoration-thickness:10px;text-underline-offset:12px;text-decoration-skip-ink:none">arrêtait de dépenser</span>&nbsp;?</p>
-<div class="card" style="gap:16px;padding:40px 36px 44px"><p class="txt" style="font-size:42px;line-height:1.45">Les gens ont peur de l'avenir…<br>→ ils <span class="hl">épargnent plus</span><br>→ ils <span class="hl">consomment moins</span></p>
-<p class="txt" style="font-size:32px">Ex. : Léa met 200 € de côté chaque mois<br>au lieu d'aller au resto</p></div>
-<p class="txt" style="font-size:40px;text-align:left;padding-left:20px">Pour Léa, c'est prudent.<br>Logique.</p></div>{deco(jar(230),110,175,-5)}''', F(2)),
- slide(f'''<div class="tag">Sauf que…</div><div class="mid" style="gap:16px;margin:auto 0">
-<p class="big" style="font-size:46px;margin-bottom:14px">… tout le monde fait pareil en même temps</p>
-{row('down','La demande chute','ex. : le resto de Léa perd des clients',RP)}<div class="arrow">↓</div>
-{row('usine','Les entreprises vendent moins','donc elles produisent moins',VP)}<div class="arrow">↓</div>
-{row('menage','Licenciements','ex. : le resto licencie un serveur',OP)}<div class="arrow">↓</div>
-{row('euro','Les revenus baissent','pour tout le pays',BP)}</div>''', F(3)),
- slide(f'''<div class="tag">Le paradoxe</div><div class="mid" style="gap:44px;margin:auto 0">
-<p class="big" style="font-size:60px;margin-bottom:50px">Tout le monde voulait<br><span class="hl" style="white-space:nowrap">épargner plus…</span></p>
-<div class="card" style="gap:18px;padding:40px 36px 44px"><p class="txt" style="font-size:44px">… mais avec des revenus en baisse,<br><b>l'épargne totale n'augmente pas.</b></p>
-<p class="txt" style="font-size:38px">Elle peut même baisser.</p></div>
-<p class="txt" style="font-size:34px;text-align:left;padding-left:20px">Ex. : Léa perd des heures<br>au travail → elle n'arrive plus<br>à mettre 200 € de côté</p></div>{deco(jar(230,False),100,215,5)}''', F(4)),
- slide(f'''<div class="tag">À retenir</div><div class="mid" style="gap:36px;margin:auto 0">
-<p class="big" style="font-size:50px;margin-bottom:50px;line-height:1.4">Ce qui est bon pour une personne<br><span class="hl" style="white-space:nowrap">peut être mauvais pour tout le pays.</span></p>
-{row('menage','Toi, tu épargnes','→ malin',GP)}{row('monde','Tout le monde épargne en même temps','→ la demande s\'effondre',RP)}
+ cover(0, 'Pourquoi un billet<br>de 20 € vaut 20 € ?', dark=True).replace('white-space:nowrap">Pourquoi','white-space:normal;text-align:center">Pourquoi'),
+ slide(f'''<div class="tag">Imagine…</div><div class="mid" style="gap:44px;margin:auto 0">
+<p class="big" style="font-size:60px;margin-bottom:20px">Un billet de 20 €,<br>c'est juste… <span style="{UL}">du papier</span>.</p>
+<div style="display:flex;justify-content:center">{billet(360)}</div>
+<div class="card"><p class="txt" style="font-size:40px">Il coûte quelques centimes à fabriquer.<br><b>Alors pourquoi tout le monde l'accepte ?</b></p></div></div>''', F(2)),
+ slide(f'''<div class="tag">Avant</div><div class="mid" style="gap:40px;margin:auto 0">
+<p class="big" style="font-size:58px;margin-bottom:20px">Autrefois, la monnaie<br><span class="hl">valait son poids en métal</span></p>
+<div style="display:flex;justify-content:center"><svg width="320" viewBox="0 0 240 150" fill="none" stroke="#121212" stroke-width="6"><ellipse cx="80" cy="96" rx="58" ry="46" fill="#FFD166"/><ellipse cx="80" cy="96" rx="40" ry="30" stroke-width="4"/><text x="80" y="107" text-anchor="middle" font-family="F" font-weight="700" font-size="28" fill="#121212" stroke="none">OR</text><ellipse cx="170" cy="70" rx="50" ry="40" fill="#E6E6E6"/><ellipse cx="170" cy="70" rx="34" ry="26" stroke-width="4"/><path d="M152 58 q8 -10 18 -8" stroke-width="5" stroke-linecap="round"/></svg></div>
+{row('euro','Des pièces en or ou en argent','leur valeur, c\'était le métal à l\'intérieur',OP)}
+<p class="txt" style="font-size:40px;margin-top:10px">Aujourd'hui, un billet, c'est du papier.<br><b>Alors d'où vient sa valeur ?</b></p></div>''', F(3)),
+ slide(f'''<div class="tag">La réponse : la confiance</div><div class="mid" style="gap:40px;margin:auto 0">
+<p class="big" style="font-size:50px;margin-bottom:60px">Tu acceptes un billet de 20 €…<br><span class="hl">parce que tu sais que le boulanger<br>l'acceptera aussi</span></p>
+{row('etat','L\'euro est la monnaie officielle','en France, un commerçant doit l\'accepter',VP)}
+{row('pourcent','La banque centrale veille','à ce que sa valeur reste stable',BP)}</div>''', F(4)),
+ slide(f'''<div class="tag">Et chez nous ?</div><div class="mid" style="gap:30px;margin:auto 0">
+<p class="big" style="font-size:52px;margin-bottom:20px">Le 1er janvier 2002, la France<br><span class="hl">change de monnaie</span></p>
+<div style="display:flex;gap:20px;align-items:center">
+<div class="row" style="background:{RP};flex:1;flex-direction:column;gap:4px;padding:22px"><b style="font-size:40px">Le franc</b><span style="font-size:30px;font-weight:500">au revoir</span></div>
+<b style="font-size:60px">→</b>
+<div class="row" style="background:{GP};flex:1;flex-direction:column;gap:4px;padding:22px"><b style="font-size:40px">L'euro</b><span style="font-size:30px;font-weight:500">bonjour</span></div></div>
+<p class="txt" style="font-size:36px">Du jour au lendemain, tout le monde<br>accepte les nouveaux billets.<br><b>Pourquoi ? Parce que tout le monde a confiance.</b></p>
 {quizblock}</div>''', F(5)),
 ]
 
