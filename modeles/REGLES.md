@@ -86,3 +86,4 @@ Fiche de référence pour continuer le projet dans une nouvelle conversation.
 - « Partie X/N » : petit sticker jaune collé en haut à droite du titre
 - Sous-titre rouge : contour noir, 84px (66px si long)
 - Logo réduit (240px), pas d'image ni de déco
+- Toutes les slides : blocs (cartes, lignes, tags) avec contour noir 5px + ombre en biais (appliqué automatiquement par tail.py). Petits éléments et surlignages sans contour.
