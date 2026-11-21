@@ -60,7 +60,7 @@ def cover(part, sub, dark=False):
     shadow = '#fff' if dark else K
     card_bg = TH if dark else '#fff'
     if dark:
-        sticker = f'<div style="position:absolute;right:-50px;top:-138px;background:{Y};border:5px solid {K};border-radius:30px;padding:12px 40px 20px;transform:rotate(8deg);box-shadow:7px 11px 0 {K};font-weight:700;font-size:96px;line-height:1">BONUS</div>'
+        sticker = f'<div style="position:absolute;right:70px;top:-150px;background:{Y};border:5px solid {K};border-radius:30px;padding:12px 40px 20px;transform:rotate(8deg);box-shadow:7px 11px 0 {K};font-weight:700;font-size:96px;line-height:1">BONUS</div>'
     else:
         sticker = ''
     partpill = '' if dark else f'<div style="background:{Y};color:{K};border:5px solid {K};border-radius:999px;padding:14px 50px 22px;transform:rotate(2deg);box-shadow:7px 11px 0 {K};font-weight:700;font-size:60px;line-height:1;white-space:nowrap">Partie {part}/{NPARTS}</div>'
