@@ -55,9 +55,26 @@
 <div class="a" id="dk1" style="top:860px"><div class="word" style="background:#FF9E9E;font-size:72px;transform:rotate(1.5deg)">On produit moins</div></div>
 <div class="a" id="da1" style="top:1012px"><div class="big" style="font-size:80px;font-weight:700;-webkit-text-stroke:3px #121212">↓</div></div>
 <div class="a" id="dk2" style="top:1100px"><div class="word" style="background:#FF9E9E;font-size:72px;transform:rotate(-1deg)">Moins d'emplois</div></div>
-<div class="a" id="s4b" style="top:1280px"><div class="txt" style="font-size:62px;font-weight:600">L'État et la banque centrale<br>essaient de la <span style="position:relative;display:inline-block;padding-bottom:10px">relancer<span id="ul" style="position:absolute;left:0;bottom:0;height:8px;border-radius:4px;background:#121212;width:0"></span></span></div></div>
+<div class="a" id="s4b" style="top:1290px"><div class="txt" style="font-size:66px;font-weight:700">Alors, comment la <span style="position:relative;display:inline-block;padding-bottom:10px">relancer<span id="ul" style="position:absolute;left:0;bottom:0;height:8px;border-radius:4px;background:#121212;width:0"></span></span> ?</div></div>
 
-<!-- S5 -->
+<!-- S5 : l'État -->
+<div class="a" id="e0" style="top:480px"><div class="word" style="background:#CDE6FF;transform:rotate(-2deg);font-size:66px;white-space:nowrap;padding:14px 36px 24px">1 · L'ÉTAT</div></div>
+<div class="a" id="e1" style="top:720px"><div class="lbl" style="font-size:64px;background:#7FDDB5;transform:rotate(-1.5deg)">baisse les impôts</div></div>
+<div class="a" id="e1s" style="top:840px"><div class="sub" style="font-size:46px">→ tu as plus d'argent à dépenser</div></div>
+<div class="a" id="e2" style="top:990px"><div class="lbl" style="font-size:64px;background:#7FDDB5;transform:rotate(1.5deg)">dépense plus</div></div>
+<div class="a" id="e2s" style="top:1110px"><div class="sub" style="font-size:46px">→ écoles, routes : des chantiers, du travail</div></div>
+<div class="a" id="e3" style="top:1260px"><div class="txt" style="font-size:62px;font-weight:600">→ on achète <span class="hl">plus</span></div></div>
+
+<!-- S6 : la banque centrale -->
+<div class="a" id="b0" style="top:480px"><div class="word" style="background:#FFD166;transform:rotate(2deg);font-size:66px;white-space:nowrap;padding:14px 36px 24px">2 · LA BANQUE CENTRALE</div></div>
+<div class="a" id="bk0" style="top:700px"><div class="lbl" style="font-size:60px;background:#7FDDB5;transform:rotate(-1.5deg)">baisse les taux d'intérêt</div></div>
+<div class="a" id="ba0" style="top:810px"><div class="big" style="font-size:80px;-webkit-text-stroke:3px #121212">↓</div></div>
+<div class="a" id="bk1" style="top:910px"><div class="lbl" style="font-size:60px;background:#fff;transform:rotate(1.5deg)">emprunter coûte moins cher</div></div>
+<div class="a" id="ba1" style="top:1020px"><div class="big" style="font-size:80px;-webkit-text-stroke:3px #121212">↓</div></div>
+<div class="a" id="bk2" style="top:1120px"><div class="lbl" style="font-size:60px;background:#fff;transform:rotate(-1deg)">on achète, on investit</div></div>
+<div class="a" id="b3" style="top:1270px"><div class="txt" style="font-size:66px;font-weight:700">→ la croissance <span class="hl">repart !</span></div></div>
+
+<!-- S7 fin -->
 <div class="a" id="endlogo" style="top:470px"><img src="logo.png" style="width:700px"></div>
 <div class="a" id="end1" style="top:960px"><div class="txt" style="font-weight:700">La suite sur le compte</div></div>
 <div class="a" id="end3" style="top:1060px"><div class="sub">Quiz + lexique gratuits sur</div></div>
@@ -105,16 +122,18 @@ function show(id,t,t0,t1,kind){const e=$(id);const p=(t-t0)/0.45,q=(t-t1)/0.3;
  else if(kind==='right')tr=`translateX(${(1-k)*700}px)`;else tr=`translateY(${(1-k)*80}px)`;
  if(q>0)tr+=` translateY(${-out(q)*60}px)`;e.style.opacity=o;e.style.transform=tr;}
 // prof lines: [start,end,text]
-const LINES=[[0.9,2.3,'Facile, tu vas voir !'],[2.4,4.75,'On va voir ça\nensemble !'],[6.0,9.2,'Regarde,\nça monte !'],[10.0,12.6,'Plus de travail\npour tout le monde'],[14.0,16.8,'Tout\ns\'enchaîne !'],[17.6,20.4,'Et ça monte !'],[21.6,24.6,'Ça marche aussi\nà l\'envers…'],[25.4,28.8,'Il faut relancer !'],[31.4,36,'À bientôt !']];
+const LINES=[[0.9,2.3,'Facile, tu vas voir !'],[2.4,4.75,'On va voir ça\nensemble !'],[6.0,9.2,'Regarde,\nça monte !'],[10.0,12.6,'Plus de travail\npour tout le monde'],[14.0,16.8,'Tout\ns\'enchaîne !'],[17.6,20.4,'Et ça monte !'],[21.6,24.6,'Ça marche aussi\nà l\'envers…'],[25.4,28.8,'Deux solutions !'],[30.2,33.6,'Plus d\'argent\ndans les poches'],[34.4,36.8,'Et on achète !'],[38.2,41.4,'Le crédit devient\nmoins cher'],[42.2,44.8,'Et ça repart !'],[47.4,52,'À bientôt !']];
 function render(tr){let t=tr;
- const lo=t<29.0?1:1-cl((t-29.0)/0.3);$('logoTop').style.opacity=lo;
+ const lo=t<45.0?1:1-cl((t-45.0)/0.3);$('logoTop').style.opacity=lo;
  $('logoTop').style.transform=`rotate(${Math.sin(t*2.2)*3}deg) translateY(${Math.sin(t*1.6)*6}px)`;
  show('pib',t,0.2,4.8,'pop');show('quoi',t,0.9,4.8,'right');
  show('s2t',t,5.2,12.8,'up');show('gr',t,5.6,12.8,'pop');$('gl').style.strokeDashoffset=1-out((t-6.0)/2.2);$('ga').style.opacity=cl((t-8.1)/0.2);show('s2b',t,8.6,12.8,'up');show('c1',t,10.0,12.8,'left');show('c2',t,10.5,12.8,'right');
  show('s3t',t,13.2,20.6,'up');show('mk0',t,13.8,20.6,'pop');show('ma0',t,14.4,20.6,'up');show('mk1',t,15.0,20.6,'pop');show('ma1',t,15.6,20.6,'up');show('mk2',t,16.2,20.6,'pop');show('s3b',t,17.4,20.6,'up');
  show('s4t',t,21.0,29.0,'up');show('dk0',t,21.6,29.0,'pop');show('da0',t,22.2,29.0,'up');show('dk1',t,22.8,29.0,'pop');show('da1',t,23.4,29.0,'up');show('dk2',t,24.0,29.0,'pop');show('s4b',t,25.2,29.0,'up');$('ul').style.width=(out((t-26.0)/0.8)*100)+'%';
- show('endlogo',t,29.4,99,'pop');show('end1',t,30.1,99,'up');show('end3',t,30.5,99,'up');show('end2',t,30.9,99,'pop');
- if(t>29.4)$('endlogo').style.transform+=` rotate(${Math.sin((t-29.4)*2.4)*3}deg)`;
+ show('e0',t,29.4,37.0,'pop');show('e1',t,30.2,37.0,'left');show('e1s',t,30.8,37.0,'up');show('e2',t,32.4,37.0,'right');show('e2s',t,33.0,37.0,'up');show('e3',t,34.8,37.0,'up');
+ show('b0',t,37.4,45.0,'pop');show('bk0',t,38.2,45.0,'pop');show('ba0',t,39.0,45.0,'up');show('bk1',t,39.6,45.0,'pop');show('ba1',t,40.4,45.0,'up');show('bk2',t,41.0,45.0,'pop');show('b3',t,42.4,45.0,'up');
+ show('endlogo',t,45.4,99,'pop');show('end1',t,46.1,99,'up');show('end3',t,46.5,99,'up');show('end2',t,46.9,99,'pop');
+ if(t>45.4)$('endlogo').style.transform+=` rotate(${Math.sin((t-45.4)*2.4)*3}deg)`;
  t=tr;
  // prof: enters at 0.4, bobs, blinks, talks when a line is active
  const pin=back((t-0.3)/0.6);
