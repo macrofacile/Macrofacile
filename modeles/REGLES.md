@@ -83,7 +83,7 @@ Fiche de référence pour continuer le projet dans une nouvelle conversation.
 
 ## Couvertures (slide 1) — nouveau style (validé nov. 2026)
 - Titre du thème : 138px, contour noir 6px, ombre en biais (10px 18px)
-- « Partie X/N » : petit sticker jaune collé en haut à droite du titre
+- « Partie X/N » : pastille jaune SOUS le titre (avec contour noir), puis le sous-titre rouge (Téo préfère ça au sticker)
 - Sous-titre rouge : contour noir, 84px (66px si long)
 - Logo réduit (240px), pas d'image ni de déco
 - Toutes les slides : blocs (cartes, lignes, tags) avec contour noir 5px + ombre en biais (appliqué automatiquement par tail.py). Petits éléments et surlignages sans contour.
