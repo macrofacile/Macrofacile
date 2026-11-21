@@ -25,31 +25,50 @@ for t in [5.2,13.2,21.0,29.4]: add(sfx,whoosh(),t-.1,.6)
 for t in [0.2,0.9, 5.6,8.6,10.0,10.5, 13.8,14.6,17.4, 21.3,21.8,22.8,23.3,24.8, 29.4,30.1,30.5]: add(sfx,pop(),t,.55)
 for t in [0.9,2.4,6.0,10.0,14.0,17.6,21.6,25.4,31.4]: add(sfx,blip(),t,.3)
 add(sfx,rise(2.2),6.0,1.0); add(sfx,ding(),8.15,.35)
-add(sfx,vroom(1.6),16.0,.7); add(sfx,vroom(1.2),25.4,.7); add(sfx,ding(),30.9,.45)
-# musique 3 : 112 bpm, Sol majeur, G-Em-C-D, vibraphone (FM) + basse ronde + petit kick + shaker
-bpm=112; beat=60/bpm; bar=4*beat; mus=np.zeros(N)
-def vib(f,dur):
-    n=int(dur*SR);t=np.arange(n)/SR;m=np.sin(2*np.pi*f*3.5*t)*1.2*np.exp(-t*6)
-    return np.sin(2*np.pi*f*t+m)*np.exp(-t*2.2)*(1+.25*np.sin(2*np.pi*6*t))*np.minimum(1,t/.004)
+add(sfx,whoosh(),16.0,.8); add(sfx,whoosh(),25.4,.8); add(sfx,ding(),30.9,.45)
+
+def piano(f,dur):
+    n=int(dur*SR);t=np.arange(n)/SR
+    return sum(np.sin(2*np.pi*f*k*t)*np.exp(-t*(1.5+k*1.2))/k**1.5 for k in (1,2,3,4))*np.minimum(1,t/.003)
+def pluck(f,dur):
+    n=int(dur*SR);p=int(SR/f);buf=rng.uniform(-1,1,p);out=np.zeros(n)
+    for k in range(n): out[k]=buf[k%p];buf[k%p]=0.5*(buf[k%p]+buf[(k+1)%p])*0.995
+    return out
+def glock(f,dur):
+    n=int(dur*SR);t=np.arange(n)/SR;return (np.sin(2*np.pi*f*t)+.4*np.sin(2*np.pi*f*2.76*t)*np.exp(-t*8))*np.exp(-t*3)*np.minimum(1,t/.002)
+def whistle(f,dur):
+    n=int(dur*SR);t=np.arange(n)/SR;v=1+.006*np.sin(2*np.pi*5.5*t)*np.minimum(1,t/.2)
+    return np.sin(2*np.pi*np.cumsum(f*v)/SR)*np.minimum(1,t/.04)*np.minimum(1,(dur-t)/.06)
+def clap():
+    n=int(.12*SR);x=rng.standard_normal(n);x=x-np.convolve(x,np.ones(3)/3,'same');return x*env(n,.002,.035)
 def kick():
-    n=int(.25*SR);t=np.arange(n)/SR;f=120*np.exp(-t*30)+45;return np.sin(2*np.pi*np.cumsum(f)/SR)*np.exp(-t*14)
-def shaker():
-    n=int(.07*SR);x=rng.standard_normal(n);x=x-np.convolve(x,np.ones(3)/3,'same');return x*env(n,.004,.02)
-chords=[(196.0,246.94,293.66),(164.81,196.0,246.94),(130.81,164.81,196.0),(146.83,185.0,220.0)]
-bass=[98.0,82.41,65.41,73.42]
-arp=[0,1,2,1,0,2,1,2]
-mel=[587.33,493.88,587.33,659.25, 493.88,392.0,440.0,493.88, 523.25,493.88,440.0,392.0, 440.0,493.88,587.33,587.33]
-nb=int(D/bar)+1
-for b in range(nb):
-    c=chords[b%4];t0=b*bar
-    for k,i in enumerate(arp): add(mus,vib(c[i]*2,beat*1.2),t0+k*beat/2,.12)
-    add(mus,tone(bass[b%4],beat*1.6,.01,.5,(1,2,3)),t0,.35);add(mus,tone(bass[b%4],beat*.9,.01,.3,(1,2,3)),t0+2.5*beat,.25)
-    for k in range(4): add(mus,kick(),t0+k*beat,.3 if k%2==0 else .18)
-    for k in range(8): add(mus,shaker(),t0+k*beat/2+beat/4,.12)
-    if 1<=b<nb-1:
-        for k in range(4): add(mus,vib(mel[(b%4)*4+k]*2,beat*1.5),t0+k*beat,.07)
-fade=np.ones(N);fi=int(1*SR);fo=int(3*SR);fade[:fi]=np.linspace(0,1,fi);fade[-fo:]=np.linspace(1,0,fo);mus*=fade
-mix=sfx*.9+mus*.6;mix=mix/np.max(np.abs(mix))*.89
-def save(name,a):
-    w=wave.open(name,'w');w.setnchannels(2);w.setsampwidth(2);w.setframerate(SR);w.writeframes((np.stack([a,a],1)*32767).astype('<i2').tobytes());w.close()
-save('mix-croissance.wav',mix); m=mus/np.max(np.abs(mus))*.89; save('musique-croissance.wav',m); print('ok')
+    n=int(.2*SR);t=np.arange(n)/SR;f=110*np.exp(-t*30)+50;return np.sin(2*np.pi*np.cumsum(f)/SR)*np.exp(-t*16)
+def fadeit(m):
+    fade=np.ones(N);fi=int(1*SR);fo=int(3*SR);fade[:fi]=np.linspace(0,1,fi);fade[-fo:]=np.linspace(1,0,fo);return m*fade
+def song(name,bpm,chords,bass,mel,inst,mel_inst,comp):
+    beat=60/bpm;bar=4*beat;mus=np.zeros(N);nb=int(D/bar)+1;cache={}
+    def ci(f,d):
+        k=(round(f,2),round(d,2))
+        if k not in cache: cache[k]=inst(f,d)
+        return cache[k]
+    for b in range(nb):
+        c=chords[b%4];t0=b*bar
+        for k,(st,idx) in enumerate(comp): add(mus,ci(c[idx]*2,beat*1.6),t0+st*beat,.13)
+        add(mus,tone(bass[b%4],beat*1.8,.01,.5,(1,2)),t0,.32);add(mus,tone(bass[b%4]*1.5,beat*1.5,.01,.4,(1,2)),t0+2*beat,.22)
+        add(mus,kick(),t0,.22);add(mus,kick(),t0+2*beat,.18)
+        for k in (1,3): add(mus,clap(),t0+k*beat,.22)
+        if 1<=b<nb-1:
+            for k in range(4): add(mus,mel_inst(mel[(b%4)*4+k],beat*.9),t0+k*beat,.10)
+    mus=fadeit(mus);mix=sfx*.9+mus*.6;mix=mix/np.max(np.abs(mix))*.89
+    w=wave.open(name,'w');w.setnchannels(2);w.setsampwidth(2);w.setframerate(SR);w.writeframes((np.stack([mix,mix],1)*32767).astype('<i2').tobytes());w.close()
+arp=[(0,0),(.5,1),(1,2),(1.5,1),(2,0),(2.5,1),(3,2),(3.5,1)]
+# A : piano pop, Do majeur, C-G-Am-F, 100 bpm
+song('mixA.wav',100,[(261.63,329.63,392.0),(196.0,246.94,293.66),(220.0,261.63,329.63),(174.61,220.0,261.63)],[65.41,49.0,55.0,43.65],
+ [659.25,783.99,659.25,587.33, 587.33,493.88,587.33,783.99, 659.25,523.25,659.25,880.0, 698.46,659.25,587.33,523.25],piano,piano,arp)
+# B : guitare + glockenspiel, Ré majeur, D-A-Bm-G, 96 bpm
+song('mixB.wav',96,[(146.83,185.0,220.0),(110.0,138.59,164.81),(123.47,146.83,185.0),(98.0,123.47,146.83)],[73.42,55.0,61.74,49.0],
+ [1174.66,1479.98,1318.51,1174.66, 1108.73,1318.51,1108.73,880.0, 987.77,1174.66,1479.98,1174.66, 987.77,1174.66,1318.51,1174.66],pluck,glock,arp)
+# C : sifflement + guitare, Fa majeur, F-C-Dm-Bb, 108 bpm
+song('mixC.wav',108,[(174.61,220.0,261.63),(130.81,164.81,196.0),(146.83,174.61,220.0),(116.54,146.83,174.61)],[87.31,65.41,73.42,58.27],
+ [880.0,1046.5,880.0,698.46, 783.99,659.25,783.99,1046.5, 880.0,698.46,880.0,1174.66, 932.33,880.0,783.99,698.46],pluck,whistle,[(0,0),(1,1),(1.5,2),(2,0),(3,1),(3.5,2)])
+print('ok')
