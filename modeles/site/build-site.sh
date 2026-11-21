@@ -1,7 +1,7 @@
 #!/bin/bash
 # Construit la version GitHub Pages du site à partir de /home/claude/site/index.html
 set -e
-SRC=/home/claude/site/index.html; DST=/home/claude/macrofacile
+SRC=/home/claude/site/index.html; DST=${DST:-/home/claude/macrofacile}
 python3 - "$SRC" "$DST/index.html" <<'PY'
 import sys
 src=open(sys.argv[1],encoding='utf8').read()
