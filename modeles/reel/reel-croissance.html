@@ -1,0 +1,133 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:F;src:url(Fredoka.ttf);font-weight:300 700}
+*{box-sizing:border-box}html,body{margin:0}
+#s{position:relative;width:1080px;height:1920px;overflow:hidden;background:#FFE2C6;font-family:F;color:#121212}
+.a{position:absolute;left:0;right:0;display:flex;justify-content:center;will-change:transform,opacity;opacity:0}
+.card{border:5px solid #121212;background:#fff;border-radius:44px;box-shadow:9px 14px 0 #121212;font-weight:700;line-height:1}
+.pill{border:5px solid #121212;background:#FF6B6B;color:#fff;border-radius:36px;box-shadow:8px 12px 0 #121212;font-weight:500}
+.lab{border:5px solid #121212;background:#fff;border-radius:22px;box-shadow:0 10px 0 #121212;font-weight:600;font-size:66px;padding:10px 40px 20px}
+.row{display:flex;align-items:center;gap:28px;width:900px;border-radius:34px;box-shadow:0 10px 0 #121212;padding:26px 34px;color:#121212}
+.row .ic{width:120px;height:120px;border-radius:50%;background:#fff;border:6px solid #121212;display:grid;place-items:center;flex:none}
+.tile{width:430px;border-radius:34px;box-shadow:0 10px 0 #121212;padding:26px 20px 30px;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
+.tile .ic{width:110px;height:110px;border-radius:50%;background:#fff;border:6px solid #121212;display:grid;place-items:center}
+.tile b{font-size:50px;line-height:1}.tile span{font-size:34px;font-weight:500;background:#fff;border-radius:999px;padding:4px 20px 8px}
+.ch{display:inline-flex;align-items:center;gap:12px;background:#fff;border-radius:999px;padding:8px 26px 14px;font-weight:700;font-size:50px;box-shadow:6px 9px 0 #121212}
+.row .t{flex:1;font-size:52px;font-weight:600;line-height:1.1}.row .t small{display:block;font-size:36px;font-weight:400;margin-top:6px}
+.hl{background:#FFD166;border-radius:16px;padding:0 18px 8px}
+.txt{font-weight:500;font-size:72px;text-align:center;line-height:1.15;width:940px}
+.sub{font-weight:400;font-size:46px;text-align:center;line-height:1.25;width:900px;color:#121212}
+#prof{position:absolute;left:40px;bottom:-20px;width:430px;height:500px;transform-origin:50% 100%}
+#bub{border:5px solid #121212;position:absolute;left:470px;bottom:300px;white-space:pre;text-align:left;background:#fff;border-radius:34px;box-shadow:0 10px 0 #121212;padding:22px 34px 28px;font-weight:600;font-size:50px;line-height:1.1;transform-origin:0% 100%;opacity:0}
+#bub:after{content:"";position:absolute;left:-30px;bottom:34px;border:22px solid transparent;border-right:34px solid #fff;border-left:0}
+.big{font-weight:700;line-height:1;text-align:center}
+.word{border:5px solid #121212;font-weight:700;font-size:110px;line-height:1;padding:8px 40px 20px;border-radius:40px;box-shadow:9px 14px 0 #121212}
+.lbl{border:5px solid #121212;font-weight:600;font-size:56px;background:#fff;border-radius:999px;padding:6px 30px 14px;box-shadow:6px 9px 0 #121212}
+</style></head><body><div id="s">
+<div class="a" id="logoTop" style="top:90px;opacity:1"><img src="logo.png" style="width:500px"></div>
+
+<!-- S1 -->
+<div class="a" id="pib" style="top:680px"><div class="card" style="font-size:118px;padding:30px 56px 44px;transform:rotate(-2deg);white-space:nowrap">LA CROISSANCE</div></div>
+<div class="a" id="quoi" style="top:1000px"><div class="pill" style="font-size:92px;padding:20px 56px 30px;transform:rotate(2deg)">C'est quoi ?</div></div>
+
+<!-- S2 : un graphique qui monte -->
+<div class="a" id="s2t" style="top:400px"><div class="txt">La croissance, c'est…</div></div>
+<div class="a" id="gr" style="top:540px"><svg width="820" viewBox="0 0 410 260" fill="none" stroke="#121212" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M30 20 V230 H395"/>
+<path id="gl" pathLength="1" d="M40 210 L110 180 L170 190 L240 130 L300 110 L380 40" stroke="#2BB673" stroke-width="12" style="stroke-dasharray:1;stroke-dashoffset:1"/>
+<path id="ga" d="M352 40 L384 36 L376 70" stroke="#2BB673" stroke-width="12" style="opacity:0"/></svg></div>
+<div class="a" id="s2b" style="top:1060px"><div class="txt" style="font-size:80px;font-weight:600">quand on produit <span class="hl">plus</span><br>chaque année</div></div>
+<div class="a" id="c1" style="top:1300px;left:80px;right:auto"><div class="lbl" style="transform:rotate(-4deg)">+ de magasins</div></div>
+<div class="a" id="c2" style="top:1300px;left:auto;right:80px"><div class="lbl" style="transform:rotate(4deg)">+ d'emplois</div></div>
+
+<!-- S3 : 2 pédales -->
+<div class="a" id="s3t" style="top:400px"><div class="txt">Elle dépend de <span class="hl">2 pédales</span></div></div>
+<div class="a" id="pe1" style="top:600px;left:70px;right:auto"><div style="transform:rotate(-8deg);display:flex;flex-direction:column;align-items:center;gap:22px"><div class="word" style="background:#CDE6FF;font-size:96px">L'ÉTAT</div><div class="sub" style="font-size:44px;width:440px">impôts et dépenses</div></div></div>
+<div class="a" id="pe2" style="top:640px;left:auto;right:70px"><div style="transform:rotate(7deg);display:flex;flex-direction:column;align-items:center;gap:22px"><div class="word" style="background:#FFD166;font-size:96px">LA BCE</div><div class="sub" style="font-size:44px;width:440px">taux d'intérêt</div></div></div>
+<div class="a" id="vr" style="top:1000px"><svg width="460" viewBox="0 0 300 140" fill="none" stroke="#121212" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"><path d="M20 96 V74 c0-8 6-12 14-14 l30-6 l26-26 c6-6 12-8 20-8 h70 c10 0 16 4 22 12 l20 26 l40 8 c8 2 12 8 12 16 v14 Z" fill="#FF9E9E"/><path d="M98 52 l18-18 h40 v18 Z M168 34 h18 l14 18 h-32 Z" fill="#CDE6FF"/><circle cx="76" cy="100" r="20" fill="#121212"/><circle cx="76" cy="100" r="7" fill="#fff" stroke="none"/><circle cx="226" cy="100" r="20" fill="#121212"/><circle cx="226" cy="100" r="7" fill="#fff" stroke="none"/></svg></div>
+<div class="a" id="s3b" style="top:1290px"><div class="sub" style="font-size:54px">L'économie, c'est <b>la voiture</b></div></div>
+
+<!-- S4 : accélérer / freiner -->
+<div class="a" id="w1" style="top:430px"><div class="word" style="background:#7FDDB5;transform:rotate(-2deg)">ACCÉLÉRER</div></div>
+<div class="a" id="e1" style="top:618px"><div class="sub" style="font-size:46px">moins d'impôts · taux d'intérêt bas</div></div>
+<div class="a" id="w2" style="top:740px"><div class="word" style="background:#FF9E9E;transform:rotate(1.5deg)">FREINER</div></div>
+<div class="a" id="e2" style="top:928px"><div class="sub" style="font-size:46px">plus d'impôts · taux d'intérêt hauts</div></div>
+<div class="a" id="s4b" style="top:1080px"><div class="txt" style="font-size:66px;font-weight:600">2020, le Covid :<br>les deux <span style="position:relative;display:inline-block;padding-bottom:10px">accélèrent !<span id="ul" style="position:absolute;left:0;bottom:0;height:8px;border-radius:4px;background:#121212;width:0"></span></span></div></div>
+<div class="a" id="vr2" style="top:1300px;left:auto;right:20px"><svg width="260" viewBox="0 0 300 140" fill="none" stroke="#121212" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"><path d="M20 96 V74 c0-8 6-12 14-14 l30-6 l26-26 c6-6 12-8 20-8 h70 c10 0 16 4 22 12 l20 26 l40 8 c8 2 12 8 12 16 v14 Z" fill="#7FDDB5"/><path d="M98 52 l18-18 h40 v18 Z M168 34 h18 l14 18 h-32 Z" fill="#CDE6FF"/><circle cx="76" cy="100" r="20" fill="#121212"/><circle cx="76" cy="100" r="7" fill="#fff" stroke="none"/><circle cx="226" cy="100" r="20" fill="#121212"/><circle cx="226" cy="100" r="7" fill="#fff" stroke="none"/><path d="M-10 60 h-40 M-6 80 h-56 M-10 100 h-36" stroke-width="5"/></svg></div>
+
+<!-- S5 -->
+<div class="a" id="endlogo" style="top:470px"><img src="logo.png" style="width:700px"></div>
+<div class="a" id="end1" style="top:960px"><div class="txt" style="font-weight:700">La suite sur le compte</div></div>
+<div class="a" id="end3" style="top:1060px"><div class="sub">Quiz + lexique gratuits sur</div></div>
+<div class="a" id="end2" style="top:1160px"><div style="background:#121212;color:#fff;border-radius:999px;padding:16px 54px 28px;font-weight:700;font-size:72px;transform:rotate(-2deg)">macrofacile.fr</div></div>
+
+<!-- PROF (personnage original) -->
+<div id="bub"><span id="bt"></span></div>
+<svg id="prof" viewBox="0 0 430 500" aria-hidden="true">
+ <g id="body">
+  <path d="M95 500 C95 400 140 350 215 350 C290 350 335 400 335 500 Z" fill="#121212" stroke="#121212" stroke-width="7"/>
+  <path d="M190 352 L215 395 L240 352" fill="#fff" stroke="#121212" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M215 392 l-12 18 12 60 12-60z" fill="#FFD166" stroke="#121212" stroke-width="5" stroke-linejoin="round"/>
+ </g>
+ <g id="arm" style="transform-origin:305px 400px">
+  <path d="M300 395 C350 380 370 330 380 290" fill="none" stroke="#121212" stroke-width="38" stroke-linecap="round"/>
+  <path d="M300 395 C350 380 370 330 380 290" fill="none" stroke="#121212" stroke-width="50" stroke-linecap="round" opacity="0"/>
+  <circle cx="382" cy="282" r="24" fill="#F2C29B" stroke="#121212" stroke-width="6"/>
+  <path d="M388 268 L420 150" stroke="#8B5A2B" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="420" cy="148" r="9" fill="#FF6B6B" stroke="#121212" stroke-width="4"/>
+ </g>
+ <g id="head">
+  <rect x="200" y="300" width="30" height="40" fill="#F2C29B" stroke="#121212" stroke-width="6"/>
+  <circle cx="215" cy="220" r="105" fill="#F2C29B" stroke="#121212" stroke-width="7"/>
+  <path d="M112 205 C110 130 160 105 215 105 C275 105 322 130 318 205 C300 170 270 150 240 150 C220 168 170 170 112 205Z" fill="#5A3A22" stroke="#121212" stroke-width="7" stroke-linejoin="round"/>
+  <circle cx="112" cy="232" r="16" fill="#F2C29B" stroke="#121212" stroke-width="6"/>
+  <circle cx="318" cy="232" r="16" fill="#F2C29B" stroke="#121212" stroke-width="6"/>
+  <g id="eyes"><ellipse cx="180" cy="222" rx="10" ry="12" fill="#121212"/><ellipse cx="250" cy="222" rx="10" ry="12" fill="#121212"/></g>
+  <circle cx="180" cy="222" r="30" fill="none" stroke="#121212" stroke-width="6"/>
+  <circle cx="250" cy="222" r="30" fill="none" stroke="#121212" stroke-width="6"/>
+  <path d="M210 222 h10" stroke="#121212" stroke-width="6"/>
+  <ellipse cx="160" cy="268" rx="14" ry="8" fill="#FF8FA3" opacity=".6"/><ellipse cx="270" cy="268" rx="14" ry="8" fill="#FF8FA3" opacity=".6"/>
+  <path id="mouthC" d="M190 275 Q215 298 240 275" fill="none" stroke="#121212" stroke-width="7" stroke-linecap="round"/>
+  <ellipse id="mouthO" cx="215" cy="283" rx="20" ry="14" fill="#7A2230" stroke="#121212" stroke-width="6" style="display:none"/>
+ </g>
+</svg>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const cl=x=>Math.max(0,Math.min(1,x));
+const back=x=>{const c=1.7;x=cl(x);return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+const out=x=>1-Math.pow(1-cl(x),3);
+function show(id,t,t0,t1,kind){const e=$(id);const p=(t-t0)/0.45,q=(t-t1)/0.3;
+ let o=cl(p)*(1-cl(q)),tr='';const k=back(p);
+ if(kind==='pop')tr=`scale(${0.4+0.6*k})`;else if(kind==='left')tr=`translateX(${(1-k)*-700}px)`;
+ else if(kind==='right')tr=`translateX(${(1-k)*700}px)`;else tr=`translateY(${(1-k)*80}px)`;
+ if(q>0)tr+=` translateY(${-out(q)*60}px)`;e.style.opacity=o;e.style.transform=tr;}
+// prof lines: [start,end,text]
+const LINES=[[0.9,2.3,'Facile, tu vas voir !'],[2.4,4.75,'On va voir ça\nensemble !'],[6.0,9.2,'Regarde,\nça monte !'],[10.0,12.6,'Plus de travail\npour tout le monde'],[14.0,16.8,'Deux pilotes\nà bord !'],[17.6,20.4,'Et l\'économie\nroule !'],[21.6,24.4,'Accélérer…\nou freiner !'],[25.4,28.8,'Vroum !'],[31.4,36,'À bientôt !']];
+function render(tr){let t=tr;
+ const lo=t<29.0?1:1-cl((t-29.0)/0.3);$('logoTop').style.opacity=lo;
+ $('logoTop').style.transform=`rotate(${Math.sin(t*2.2)*3}deg) translateY(${Math.sin(t*1.6)*6}px)`;
+ show('pib',t,0.2,4.8,'pop');show('quoi',t,0.9,4.8,'right');
+ show('s2t',t,5.2,12.8,'up');show('gr',t,5.6,12.8,'pop');$('gl').style.strokeDashoffset=1-out((t-6.0)/2.2);$('ga').style.opacity=cl((t-8.1)/0.2);show('s2b',t,8.6,12.8,'up');show('c1',t,10.0,12.8,'left');show('c2',t,10.5,12.8,'right');
+ show('s3t',t,13.2,20.6,'up');show('pe1',t,13.8,20.6,'left');show('pe2',t,14.6,20.6,'right');
+ {const e=$('vr');const p=cl((t-16.0)/1.4);e.style.opacity=t<16.0?0:(t>20.6?1-cl((t-20.6)/0.3):1);e.style.transform=`translateX(${(1-out(p))*-1100}px) translateY(${Math.abs(Math.sin(t*9))*-5}px)`;}
+ show('s3b',t,17.4,20.6,'up');
+ if(t>13.8)$('pe1').style.transform+=` translateY(${Math.sin(t*3)*6}px)`;if(t>14.6)$('pe2').style.transform+=` translateY(${Math.sin(t*3+1.5)*6}px)`;
+ show('w1',t,21.3,29.0,'pop');show('e1',t,21.8,29.0,'up');show('w2',t,22.8,29.0,'pop');show('e2',t,23.3,29.0,'up');show('s4b',t,24.8,29.0,'up');$('ul').style.width=(out((t-25.6)/0.8)*100)+'%';
+ {const e=$('vr2');const p=cl((t-25.4)/1.0);e.style.opacity=t<25.4?0:(t>29?1-cl((t-29)/0.3):1);e.style.transform=`translateX(${(1-out(p))*-1100}px) translateY(${Math.abs(Math.sin(t*12))*-5}px)`;}
+ show('endlogo',t,29.4,99,'pop');show('end1',t,30.1,99,'up');show('end3',t,30.5,99,'up');show('end2',t,30.9,99,'pop');
+ if(t>29.4)$('endlogo').style.transform+=` rotate(${Math.sin((t-29.4)*2.4)*3}deg)`;
+ t=tr;
+ // prof: enters at 0.4, bobs, blinks, talks when a line is active
+ const pin=back((t-0.3)/0.6);
+ $('prof').style.transform=`translateY(${(1-pin)*520}px) rotate(${Math.sin(t*1.8)*1.5}deg)`;
+ $('head').style.transform=`translateY(${Math.sin(t*3.2)*3}px) rotate(${Math.sin(t*1.4)*2}deg)`;$('head').style.transformOrigin='215px 330px';
+ const blink=((t%3.3)<0.12);$('eyes').style.transform=blink?'scaleY(0.1)':'none';$('eyes').style.transformOrigin='215px 222px';
+ let line=null;for(const L of LINES)if(t>=L[0]&&t<L[1])line=L;
+ const talking=line&&(t-line[0]<1.4);
+ const mo=talking&&Math.sin(t*22)>0;$('mouthO').style.display=mo?'block':'none';$('mouthC').style.display=mo?'none':'block';
+ $('arm').style.transform=`rotate(${(line?Math.sin(t*6)*8:Math.sin(t*1.5)*3)-4}deg)`;
+ const bub=$('bub');
+ if(line){$('bt').textContent=line[2];const p=back((t-line[0])/0.4),q=cl((t-(line[1]-0.25))/0.25);bub.style.opacity=cl((t-line[0])/0.15)*(1-q);bub.style.transform=`scale(${0.5+0.5*p})`}else bub.style.opacity=0;
+}
+window.render=render;render(0);
+</script></body></html>
