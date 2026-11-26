@@ -233,7 +233,7 @@ def _refoot(lst, label):
 F = lambda n, t=9: foot('PARTIE 2', n, t)
 _np2 = nextpost(2, 'Quand une banque tombe')
 _p4 = P['p1'][3].replace('<div class="tag">Le problème</div><div class="mid" style="gap:44px','<div class="tag">Le problème</div><div class="mid" style="gap:34px')
-_p1 = [cover(1, 'Ce qu\'elles font<br>de ton argent').replace('white-space:nowrap">Ce qu','white-space:normal;text-align:center">Ce qu'), P['p1'][1], P['p1'][2], _ins_before_foot(_p4, _np2)]
+_p1 = [cover(1, 'Comment elles fonctionnent'), P['p1'][1], P['p1'][2], _ins_before_foot(_p4, _np2)]
 _panic = P['p1'][4].replace(nextpost(2, 'Le levier'), '')
 _rescue = slide(f'''<div class="tag">Comment récupérer son argent ?</div><div class="mid" style="gap:40px;margin:auto 0">
 <p class="big" style="font-size:54px">Il existe <span class="hl">3 filets de sécurité</span></p>
