@@ -1,0 +1,141 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:F;src:url(Fredoka.ttf);font-weight:300 700}
+*{box-sizing:border-box}html,body{margin:0}
+#s{position:relative;width:1080px;height:1920px;overflow:hidden;background:#D3F4E6;font-family:F;color:#121212}
+.a{position:absolute;left:0;right:0;display:flex;justify-content:center;will-change:transform,opacity;opacity:0}
+.card{border:5px solid #121212;background:#fff;border-radius:44px;box-shadow:9px 14px 0 #121212;font-weight:700;line-height:1}
+.pill{border:5px solid #121212;background:#FF6B6B;color:#fff;border-radius:36px;box-shadow:8px 12px 0 #121212;font-weight:500}
+.lab{border:5px solid #121212;background:#fff;border-radius:22px;box-shadow:0 10px 0 #121212;font-weight:600;font-size:66px;padding:10px 40px 20px}
+.row{display:flex;align-items:center;gap:28px;width:900px;border-radius:34px;box-shadow:0 10px 0 #121212;padding:26px 34px;color:#121212}
+.row .ic{width:120px;height:120px;border-radius:50%;background:#fff;border:6px solid #121212;display:grid;place-items:center;flex:none}
+.tile{width:430px;border-radius:34px;box-shadow:0 10px 0 #121212;padding:26px 20px 30px;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
+.tile .ic{width:110px;height:110px;border-radius:50%;background:#fff;border:6px solid #121212;display:grid;place-items:center}
+.tile b{font-size:50px;line-height:1}.tile span{font-size:34px;font-weight:500;background:#fff;border-radius:999px;padding:4px 20px 8px}
+.ch{display:inline-flex;align-items:center;gap:12px;background:#fff;border-radius:999px;padding:8px 26px 14px;font-weight:700;font-size:50px;box-shadow:6px 9px 0 #121212}
+.row .t{flex:1;font-size:52px;font-weight:600;line-height:1.1}.row .t small{display:block;font-size:36px;font-weight:400;margin-top:6px}
+.hl{background:#FFD166;border-radius:16px;padding:0 18px 8px}
+.txt{font-weight:500;font-size:72px;text-align:center;line-height:1.15;width:940px}
+.sub{font-weight:400;font-size:46px;text-align:center;line-height:1.25;width:900px;color:#121212}
+#prof{position:absolute;left:40px;bottom:-20px;width:430px;height:500px;transform-origin:50% 100%}
+#bub{border:5px solid #121212;position:absolute;left:470px;bottom:300px;white-space:pre;text-align:left;background:#fff;border-radius:34px;box-shadow:0 10px 0 #121212;padding:22px 34px 28px;font-weight:600;font-size:50px;line-height:1.1;transform-origin:0% 100%;opacity:0}
+#bub:after{content:"";position:absolute;left:-30px;bottom:34px;border:22px solid transparent;border-right:34px solid #fff;border-left:0}
+.big{font-weight:700;line-height:1;text-align:center}
+.word{border:5px solid #121212;font-weight:700;font-size:110px;line-height:1;padding:8px 40px 20px;border-radius:40px;box-shadow:9px 14px 0 #121212}
+.lbl{border:5px solid #121212;font-weight:600;font-size:56px;background:#fff;border-radius:999px;padding:6px 30px 14px;box-shadow:6px 9px 0 #121212}
+</style></head><body><div id="s">
+<div class="a" id="logoTop" style="top:90px;opacity:1"><img src="logo.png" style="width:500px"></div>
+
+<!-- S1 -->
+<div class="a" id="t1" style="top:640px"><div class="card" style="font-size:124px;padding:30px 56px 44px;transform:rotate(-2deg);white-space:nowrap">LES BANQUES</div></div>
+<div class="a" id="t2" style="top:960px"><div class="pill" style="font-size:66px;padding:20px 50px 30px;transform:rotate(2deg);text-align:center">Que font-elles<br>de ton argent ?</div></div>
+
+<!-- S2 : gardé / prêté -->
+<div class="a" id="s2t" style="top:480px"><div class="txt">Ton argent à la banque…</div></div>
+<div class="a" id="g1" style="top:640px;left:60px;right:auto"><div style="transform:rotate(-6deg);display:flex;flex-direction:column;align-items:center;gap:20px"><div class="word" style="background:#FFD166;font-size:96px">GARDÉ</div><div class="sub" style="font-size:44px;width:440px">sur ton compte</div></div></div>
+<div class="a" id="g2" style="top:700px;left:auto;right:60px"><div style="transform:rotate(6deg);display:flex;flex-direction:column;align-items:center;gap:20px"><div class="word" style="background:#DCD3FF;font-size:96px">PRÊTÉ</div><div class="sub" style="font-size:44px;width:440px">pour une maison, une voiture…</div></div></div>
+<div class="a" id="s2b" style="top:1080px"><div class="txt" style="font-size:62px;font-weight:600">Elle te donne <span class="hl">1 %</span>,<br>elle demande <span class="hl">4 %</span></div></div>
+<div class="a" id="s2c" style="top:1300px"><div class="lbl" style="transform:rotate(-2deg)">→ elle gagne la différence</div></div>
+
+<!-- S3 : le hic -->
+<div class="a" id="s3t" style="top:480px"><div class="txt">Mais il y a <span class="hl">un hic</span></div></div>
+<div class="a" id="clkw" style="top:620px"><svg width="760" viewBox="0 0 320 165" fill="none" stroke="#121212" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+<g id="clk"><circle cx="70" cy="75" r="56" fill="#fff"/><path d="M70 75 L94 88"/><path id="hand" d="M70 75 V36"/></g>
+<text x="70" y="160" text-anchor="middle" font-family="F" font-weight="700" font-size="20" fill="#121212" stroke="none">tout de suite</text>
+<path id="carr" d="M134 75 H170 M158 63 L170 75 L158 87" stroke-width="7"/>
+<g id="cal"><rect x="190" y="22" width="110" height="100" rx="12" fill="#fff"/><path d="M190 50 H300" stroke-width="8"/><path d="M214 12 V32 M276 12 V32"/>
+<text x="245" y="104" text-anchor="middle" font-family="F" font-weight="700" font-size="28" fill="#121212" stroke="none">20 ans</text></g></svg></div>
+<div class="a" id="h1" style="top:1050px"><div class="sub" style="font-size:50px">ton argent : <b>retirable tout de suite</b></div></div>
+<div class="a" id="h2" style="top:1130px"><div class="sub" style="font-size:50px">son crédit : <b>remboursé sur 20 ans</b></div></div>
+<div class="a" id="h3" style="top:1260px"><div class="lbl" style="background:#FFD166;transform:rotate(-2deg)">elle n'a jamais tout en caisse</div></div>
+
+<!-- S4 : panique -->
+<div class="a" id="s4t" style="top:480px"><div class="txt">Et si <span class="hl">tout le monde</span><br>retire en même temps ?</div></div>
+<div class="a" id="qw" style="top:740px"><svg width="860" viewBox="0 0 400 170" fill="none" stroke="#121212" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+<path d="M290 70 L345 40 L400 70 Z" fill="#FFD166"/><path d="M302 76 V150 M322 76 V150 M346 76 V150 M370 76 V150 M390 76 V150" stroke-width="8"/><g id="pp0" style="opacity:0"><circle cx="40" cy="78" r="16" fill="#FFE0B8"/><path d="M18 160 c0 -40 44 -40 44 0" fill="#CDE6FF"/></g><g id="pp1" style="opacity:0"><circle cx="100" cy="78" r="16" fill="#FFE0B8"/><path d="M78 160 c0 -40 44 -40 44 0" fill="#FF9E9E"/></g><g id="pp2" style="opacity:0"><circle cx="160" cy="78" r="16" fill="#FFE0B8"/><path d="M138 160 c0 -40 44 -40 44 0" fill="#FFD166"/></g><g id="pp3" style="opacity:0"><circle cx="220" cy="78" r="16" fill="#FFE0B8"/><path d="M198 160 c0 -40 44 -40 44 0" fill="#7FDDB5"/></g></svg></div>
+<div class="a" id="stamp" style="top:1130px"><div style="border:10px solid #E63946;color:#E63946;border-radius:24px;padding:10px 40px 20px;font-weight:700;font-size:84px;line-height:1;transform:rotate(-8deg);background:#fff;white-space:nowrap">PANIQUE BANCAIRE</div></div>
+
+<!-- S5 : protégé -->
+<div class="a" id="s5t" style="top:480px"><div class="txt">Pas de panique :<br>ton argent est <span class="hl">protégé</span></div></div>
+<div class="a" id="sh" style="top:700px"><svg width="420" viewBox="0 0 200 220" fill="none" stroke="#121212" stroke-width="7" stroke-linejoin="round"><path d="M100 10 L180 40 V110 C180 160 140 195 100 210 C60 195 20 160 20 110 V40 Z" fill="#7FDDB5"/>
+<text x="100" y="112" text-anchor="middle" font-family="F" font-weight="700" font-size="34" fill="#121212" stroke="none">100 000 €</text>
+<path d="M70 140 L92 162 L134 120" stroke-width="10" stroke-linecap="round"/></svg></div>
+<div class="a" id="p1" style="top:1180px"><div class="sub" style="font-size:48px">garanti jusqu'à <b>100 000 € par banque</b></div></div>
+<div class="a" id="p2" style="top:1270px"><div class="lbl" style="transform:rotate(-2deg)">+ la banque centrale peut aider</div></div>
+
+<!-- S7 fin -->
+<div class="a" id="endlogo" style="top:470px"><img src="logo.png" style="width:700px"></div>
+<div class="a" id="end1" style="top:960px"><div class="txt" style="font-weight:700">La suite sur le compte</div></div>
+<div class="a" id="end3" style="top:1060px"><div class="sub">Quiz + lexique gratuits sur</div></div>
+<div class="a" id="end2" style="top:1160px"><div style="background:#121212;color:#fff;border-radius:999px;padding:16px 54px 28px;font-weight:700;font-size:72px;transform:rotate(-2deg)">macrofacile.fr</div></div>
+
+<!-- PROF (personnage original) -->
+<div id="bub"><span id="bt"></span></div>
+<svg id="prof" viewBox="0 0 430 500" aria-hidden="true">
+ <g id="body">
+  <path d="M95 500 C95 400 140 350 215 350 C290 350 335 400 335 500 Z" fill="#121212" stroke="#121212" stroke-width="7"/>
+  <path d="M190 352 L215 395 L240 352" fill="#fff" stroke="#121212" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M215 392 l-12 18 12 60 12-60z" fill="#FFD166" stroke="#121212" stroke-width="5" stroke-linejoin="round"/>
+ </g>
+ <g id="arm" style="transform-origin:305px 400px">
+  <path d="M300 395 C350 380 370 330 380 290" fill="none" stroke="#121212" stroke-width="38" stroke-linecap="round"/>
+  <path d="M300 395 C350 380 370 330 380 290" fill="none" stroke="#121212" stroke-width="50" stroke-linecap="round" opacity="0"/>
+  <circle cx="382" cy="282" r="24" fill="#F2C29B" stroke="#121212" stroke-width="6"/>
+  <path d="M388 268 L420 150" stroke="#8B5A2B" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="420" cy="148" r="9" fill="#FF6B6B" stroke="#121212" stroke-width="4"/>
+ </g>
+ <g id="head">
+  <rect x="200" y="300" width="30" height="40" fill="#F2C29B" stroke="#121212" stroke-width="6"/>
+  <circle cx="215" cy="220" r="105" fill="#F2C29B" stroke="#121212" stroke-width="7"/>
+  <path d="M112 205 C110 130 160 105 215 105 C275 105 322 130 318 205 C300 170 270 150 240 150 C220 168 170 170 112 205Z" fill="#5A3A22" stroke="#121212" stroke-width="7" stroke-linejoin="round"/>
+  <circle cx="112" cy="232" r="16" fill="#F2C29B" stroke="#121212" stroke-width="6"/>
+  <circle cx="318" cy="232" r="16" fill="#F2C29B" stroke="#121212" stroke-width="6"/>
+  <g id="eyes"><ellipse cx="180" cy="222" rx="10" ry="12" fill="#121212"/><ellipse cx="250" cy="222" rx="10" ry="12" fill="#121212"/></g>
+  <circle cx="180" cy="222" r="30" fill="none" stroke="#121212" stroke-width="6"/>
+  <circle cx="250" cy="222" r="30" fill="none" stroke="#121212" stroke-width="6"/>
+  <path d="M210 222 h10" stroke="#121212" stroke-width="6"/>
+  <ellipse cx="160" cy="268" rx="14" ry="8" fill="#FF8FA3" opacity=".6"/><ellipse cx="270" cy="268" rx="14" ry="8" fill="#FF8FA3" opacity=".6"/>
+  <path id="mouthC" d="M190 275 Q215 298 240 275" fill="none" stroke="#121212" stroke-width="7" stroke-linecap="round"/>
+  <ellipse id="mouthO" cx="215" cy="283" rx="20" ry="14" fill="#7A2230" stroke="#121212" stroke-width="6" style="display:none"/>
+ </g>
+</svg>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+const cl=x=>Math.max(0,Math.min(1,x));
+const back=x=>{const c=1.7;x=cl(x);return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+const out=x=>1-Math.pow(1-cl(x),3);
+function show(id,t,t0,t1,kind){const e=$(id);const p=(t-t0)/0.45,q=(t-t1)/0.3;
+ let o=cl(p)*(1-cl(q)),tr='';const k=back(p);
+ if(kind==='pop')tr=`scale(${0.4+0.6*k})`;else if(kind==='left')tr=`translateX(${(1-k)*-700}px)`;
+ else if(kind==='right')tr=`translateX(${(1-k)*700}px)`;else tr=`translateY(${(1-k)*80}px)`;
+ if(q>0)tr+=` translateY(${-out(q)*60}px)`;e.style.opacity=o;e.style.transform=tr;}
+// prof lines: [start,end,text]
+const LINES=[[0.9,2.3,'Facile, tu vas voir !'],[2.4,4.75,'On va voir ça\nensemble !'],[7.0,9.6,'Elle en fait\n2 choses'],[10.6,12.8,'Malin !'],[14.2,17.0,'Tic-tac…'],[18.4,20.8,'Ça coince !'],[22.6,25.0,'Tout le monde\ncourt !'],[25.8,29.2,'Aïe…'],[30.6,33.2,'Ouf !'],[34.0,37.4,'Ton argent\nest à l\'abri'],[40.0,44.5,'À bientôt !']];
+function render(tr){let t=tr;
+ const lo=t<37.6?1:1-cl((t-37.6)/0.3);$('logoTop').style.opacity=lo;
+ $('logoTop').style.transform=`rotate(${Math.sin(t*2.2)*3}deg) translateY(${Math.sin(t*1.6)*6}px)`;
+ show('t1',t,0.2,4.8,'pop');show('t2',t,0.9,4.8,'right');
+ show('s2t',t,5.2,13.0,'up');show('g1',t,5.8,13.0,'left');show('g2',t,6.8,13.0,'right');show('s2b',t,8.6,13.0,'up');show('s2c',t,10.4,13.0,'pop');
+ if(t>5.8)$('g1').style.transform+=` translateY(${Math.sin(t*3)*6}px)`;if(t>6.8)$('g2').style.transform+=` translateY(${Math.sin(t*3+1.5)*6}px)`;
+ show('s3t',t,13.4,21.0,'up');show('clkw',t,14.0,21.0,'pop');$('hand').setAttribute('transform',`rotate(${(t*240)%360} 70 75)`);$('carr').style.opacity=cl((t-14.8)/0.3);$('cal').style.opacity=cl((t-15.2)/0.3);
+ show('h1',t,15.8,21.0,'left');show('h2',t,16.6,21.0,'right');show('h3',t,18.2,21.0,'pop');
+ show('s4t',t,21.4,29.4,'up');show('qw',t,22.0,29.4,'pop');for(let i=0;i<4;i++){const e=$('pp'+i);const p=cl((t-(22.4+i*0.45))/0.25);e.style.opacity=p;e.style.transform=`translateY(${(1-p)*30+Math.abs(Math.sin(t*10+i))*-4*(t>24.8?1:0)}px)`;}
+ show('stamp',t,25.2,29.4,'pop');if(t>25.2&&t<25.6)$('stamp').style.transform+=` rotate(${Math.sin((t-25.2)*60)*4}deg)`;
+ show('s5t',t,29.8,37.6,'up');show('sh',t,30.4,37.6,'pop');if(t>30.4)$('sh').style.transform+=` rotate(${Math.sin(t*2)*3}deg)`;show('p1',t,31.6,37.6,'up');show('p2',t,33.4,37.6,'pop');
+ show('endlogo',t,38.0,99,'pop');show('end1',t,38.7,99,'up');show('end3',t,39.1,99,'up');show('end2',t,39.5,99,'pop');
+ if(t>38.0)$('endlogo').style.transform+=` rotate(${Math.sin((t-38.0)*2.4)*3}deg)`;
+ t=tr;
+ // prof: enters at 0.4, bobs, blinks, talks when a line is active
+ const pin=back((t-0.3)/0.6);
+ $('prof').style.transform=`translateY(${(1-pin)*520}px) rotate(${Math.sin(t*1.8)*1.5}deg)`;
+ $('head').style.transform=`translateY(${Math.sin(t*3.2)*3}px) rotate(${Math.sin(t*1.4)*2}deg)`;$('head').style.transformOrigin='215px 330px';
+ const blink=((t%3.3)<0.12);$('eyes').style.transform=blink?'scaleY(0.1)':'none';$('eyes').style.transformOrigin='215px 222px';
+ let line=null;for(const L of LINES)if(t>=L[0]&&t<L[1])line=L;
+ const talking=line&&(t-line[0]<1.4);
+ const mo=talking&&Math.sin(t*22)>0;$('mouthO').style.display=mo?'block':'none';$('mouthC').style.display=mo?'none':'block';
+ $('arm').style.transform=`rotate(${(line?Math.sin(t*6)*8:Math.sin(t*1.5)*3)-4}deg)`;
+ const bub=$('bub');
+ if(line){$('bt').textContent=line[2];const p=back((t-line[0])/0.4),q=cl((t-(line[1]-0.25))/0.25);bub.style.opacity=cl((t-line[0])/0.15)*(1-q);bub.style.transform=`scale(${0.5+0.5*p})`}else bub.style.opacity=0;
+}
+window.render=render;render(0);
+</script></body></html>

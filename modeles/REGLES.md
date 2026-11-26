@@ -89,3 +89,10 @@ Fiche de référence pour continuer le projet dans une nouvelle conversation.
 - Toutes les slides : blocs (cartes, lignes, tags) avec contour noir 5px + ombre en biais (appliqué automatiquement par tail.py). Petits éléments et surlignages sans contour.
 
 - Musiques déjà utilisées : PIB = marimba 104 bpm · Monnaie = ukulélé 90 bpm · Croissance = sifflement + guitare 108 bpm (option C). Téo n'aime pas les sons « qui font peur » (vibraphone FM, bruit de moteur) : rester joyeux.
+
+## Format des thèmes (validé nov. 2026)
+- Partie 1/2 + Partie 2/2 (autant de slides que besoin) + Bonus (sans numéro) + 1 reel
+- Pas d'emojis dans les blocs : pictos dessinés seulement
+- Titres de slides pros (pas de « les clients sont fichus ? »)
+- Thème LES BANQUES : fond menthe #D3F4E6, sans le levier (jugé trop dur pour débutants)
+- Musiques : PIB marimba · Monnaie ukulélé · Croissance sifflement · Banques bossa piano électrique 120 bpm
