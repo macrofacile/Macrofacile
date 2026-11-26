@@ -33,7 +33,10 @@
 <div class="a" id="s2t" style="top:480px"><div class="txt">Une banque fait <span class="hl">2 choses</span></div></div>
 <div class="a" id="g1" style="top:640px;left:50px;right:auto"><div style="transform:rotate(-5deg);display:flex;flex-direction:column;align-items:center;gap:20px"><div class="word" style="background:#FFD166;font-size:92px">GARDER</div><div class="sub" style="font-size:42px;width:460px">sur ton compte courant ou ton livret d'épargne</div></div></div>
 <div class="a" id="g2" style="top:700px;left:auto;right:50px"><div style="transform:rotate(5deg);display:flex;flex-direction:column;align-items:center;gap:20px"><div class="word" style="background:#DCD3FF;font-size:92px">PRÊTER</div><div class="sub" style="font-size:42px;width:460px">à ceux qui ont besoin d'argent</div></div></div>
-<div class="a" id="s2b" style="top:1180px"><div class="txt" style="font-size:60px;font-weight:600">Le même argent<br><span class="hl">sert deux fois</span></div></div>
+<div class="a" id="i1" style="top:950px;left:120px;right:auto"><div style="transform:rotate(-6deg)"><svg width="250" viewBox="0 0 200 180" fill="none" stroke="#121212" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"><rect x="20" y="16" width="160" height="140" rx="16" fill="#FFD166"/><rect x="40" y="36" width="120" height="100" rx="10" fill="#fff"/><circle cx="100" cy="86" r="26" fill="#FFD166"/><path d="M100 64 V108 M78 86 H122" stroke-width="6"/><path d="M44 156 V172 M156 156 V172"/></svg></div></div>
+<div class="a" id="i2" style="top:960px;left:auto;right:110px"><div style="transform:rotate(5deg)"><svg width="270" viewBox="0 0 220 180" fill="none" stroke="#121212" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"><path d="M14 80 L96 14 L178 80" fill="#FF9E9E"/><rect x="32" y="80" width="128" height="86" fill="#fff"/><rect x="50" y="98" width="30" height="26" fill="#CDE6FF" stroke-width="5"/><path d="M110 166 V118 h32 V166" fill="#FFE0B8"/>
+<circle cx="182" cy="44" r="30" fill="#7FDDB5"/><text x="182" y="56" text-anchor="middle" font-family="F" font-weight="700" font-size="34" fill="#121212" stroke="none">€</text></svg></div></div>
+<div class="a" id="s2b" style="top:1230px"><div class="txt" style="font-size:60px;font-weight:600">Le même argent<br><span class="hl">sert deux fois</span></div></div>
 
 <!-- S3 : à quoi ça sert -->
 <div class="a" id="s3t" style="top:480px"><div class="txt">À quoi ça sert ?</div></div>
@@ -110,7 +113,7 @@ function render(tr){let t=tr;
  const lo=t<37.6?1:1-cl((t-37.6)/0.3);$('logoTop').style.opacity=lo;
  $('logoTop').style.transform=`rotate(${Math.sin(t*2.2)*3}deg) translateY(${Math.sin(t*1.6)*6}px)`;
  show('t1',t,0.2,4.8,'pop');show('t2',t,0.9,4.8,'right');
- show('s2t',t,5.2,13.0,'up');show('g1',t,5.8,13.0,'left');show('g2',t,7.2,13.0,'right');show('s2b',t,9.6,13.0,'up');
+ show('s2t',t,5.2,13.0,'up');show('g1',t,5.8,13.0,'left');show('g2',t,7.2,13.0,'right');show('i1',t,6.4,13.0,'pop');show('i2',t,7.8,13.0,'pop');show('s2b',t,9.6,13.0,'up');
  if(t>5.8)$('g1').style.transform+=` translateY(${Math.sin(t*3)*6}px)`;if(t>7.2)$('g2').style.transform+=` translateY(${Math.sin(t*3+1.5)*6}px)`;
  show('s3t',t,13.4,21.6,'up');show('uk0',t,14.0,21.6,'pop');show('ua0',t,15.2,21.6,'up');show('uk1',t,15.6,21.6,'pop');show('ua1',t,17.0,21.6,'up');show('uk2',t,17.4,21.6,'pop');
  show('s4t',t,22.0,29.8,'up');show('r1',t,22.6,29.8,'left');show('r2',t,23.6,29.8,'right');show('r3',t,25.2,29.8,'pop');show('r4',t,26.4,29.8,'up');
