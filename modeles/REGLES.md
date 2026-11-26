@@ -99,3 +99,4 @@ Fiche de référence pour continuer le projet dans une nouvelle conversation.
 
 - Couvertures : cadre du titre de LARGEUR FIXE (860px) pour tous les thèmes, texte ajusté automatiquement (max 124px). Tous les cadres ont la même taille sur la grille Insta.
 - Site : TOUS les quiz de thème gardent "featured": true (grandes cartes de couleur, le plus récent en premier). Ne jamais les repasser à false. Titres de quiz sur une seule ligne.
+- Quiz : réponses de longueur équivalente (la bonne ne doit pas être la plus longue). L'ordre des réponses est mélangé à chaque partie (fonction shufQ).
