@@ -48,10 +48,12 @@
 
 <!-- S4 : comment elle gagne -->
 <div class="a" id="s4t" style="top:480px"><div class="txt">Comment elle<br><span class="hl">gagne sa vie</span>&nbsp;?</div></div>
-<div class="a" id="r1" style="top:700px;left:70px;right:auto"><div class="card" style="background:#fff;transform:rotate(-3deg);text-align:center;padding:24px 40px 34px;display:flex;flex-direction:column;gap:6px"><span style="font-size:38px;font-weight:500">à Emma,<br>elle donne</span><b style="font-size:110px;line-height:1">1 %</b></div></div>
-<div class="a" id="r2" style="top:700px;left:auto;right:70px"><div class="card" style="background:#FFD166;transform:rotate(3deg);text-align:center;padding:24px 40px 34px;display:flex;flex-direction:column;gap:6px"><span style="font-size:38px;font-weight:500">à Lucas,<br>elle demande</span><b style="font-size:110px;line-height:1">4 %</b></div></div>
-<div class="a" id="r3" style="top:1060px"><div class="lbl" style="font-size:58px;background:#7FDDB5;transform:rotate(-2deg)">elle garde la différence</div></div>
-<div class="a" id="r4" style="top:1190px"><div class="sub" style="font-size:44px">pour payer ses employés, ses agences…</div></div>
+<div class="a" id="r1" style="top:700px;left:70px;right:auto"><div class="card" style="background:#fff;transform:rotate(-3deg);text-align:center;padding:24px 40px 34px;display:flex;flex-direction:column;gap:6px"><span style="font-size:34px;font-weight:500">sur l'épargne<br>d'Emma, elle<br>lui donne</span><b style="font-size:110px;line-height:1">1 %</b></div></div>
+<div class="a" id="r2" style="top:700px;left:auto;right:70px"><div class="card" style="background:#FFD166;transform:rotate(3deg);text-align:center;padding:24px 40px 34px;display:flex;flex-direction:column;gap:6px"><span style="font-size:34px;font-weight:500">sur le crédit<br>de Lucas, elle<br>lui demande</span><b style="font-size:110px;line-height:1">4 %</b></div></div>
+<div class="a" id="r3" style="top:1070px"><div class="lbl" style="font-size:58px;background:#7FDDB5;transform:rotate(-2deg)">elle garde la différence</div></div>
+<div class="a" id="r4" style="top:1185px"><div class="sub" style="font-size:44px">pour payer ses employés, ses agences…</div></div>
+
+<div class="a" id="r5" style="top:1290px"><div class="lbl" style="font-size:38px;background:#CDE6FF;transform:rotate(1.5deg)">ces taux bougent : ils suivent la banque centrale</div></div>
 
 <!-- S5 : services -->
 <div class="a" id="s5t" style="top:480px"><div class="txt">Et au quotidien,<br>elle te permet de…</div></div>
@@ -116,7 +118,7 @@ function render(tr){let t=tr;
  show('s2t',t,5.2,13.0,'up');show('g1',t,5.8,13.0,'left');show('g2',t,7.2,13.0,'right');show('i1',t,6.4,13.0,'pop');show('i2',t,7.8,13.0,'pop');show('s2b',t,9.6,13.0,'up');
  if(t>5.8)$('g1').style.transform+=` translateY(${Math.sin(t*3)*6}px)`;if(t>7.2)$('g2').style.transform+=` translateY(${Math.sin(t*3+1.5)*6}px)`;
  show('s3t',t,13.4,21.6,'up');show('uk0',t,14.0,21.6,'pop');show('ua0',t,15.2,21.6,'up');show('uk1',t,15.6,21.6,'pop');show('ua1',t,17.0,21.6,'up');show('uk2',t,17.4,21.6,'pop');
- show('s4t',t,22.0,29.8,'up');show('r1',t,22.6,29.8,'left');show('r2',t,23.6,29.8,'right');show('r3',t,25.2,29.8,'pop');show('r4',t,26.4,29.8,'up');
+ show('s4t',t,22.0,29.8,'up');show('r1',t,22.6,29.8,'left');show('r2',t,23.6,29.8,'right');show('r3',t,25.2,29.8,'pop');show('r5',t,27.2,29.8,'pop');show('r4',t,26.4,29.8,'up');
  show('s5t',t,30.2,37.6,'up');show('v1',t,30.8,37.6,'pop');show('v2',t,31.8,37.6,'pop');show('v3',t,32.8,37.6,'pop');show('v4',t,34.4,37.6,'up');
  show('endlogo',t,38.0,99,'pop');show('end1',t,38.7,99,'up');show('end3',t,39.1,99,'up');show('end2',t,39.5,99,'pop');
  if(t>38.0)$('endlogo').style.transform+=` rotate(${Math.sin((t-38.0)*2.4)*3}deg)`;
