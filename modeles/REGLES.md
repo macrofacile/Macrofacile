@@ -96,3 +96,5 @@ Fiche de référence pour continuer le projet dans une nouvelle conversation.
 - Titres de slides pros (pas de « les clients sont fichus ? »)
 - Thème LES BANQUES : fond menthe #D3F4E6, sans le levier (jugé trop dur pour débutants)
 - Musiques : PIB marimba · Monnaie ukulélé · Croissance sifflement · Banques bossa piano électrique 120 bpm
+
+- Couvertures : cadre du titre de LARGEUR FIXE (860px) pour tous les thèmes, texte ajusté automatiquement (max 124px). Tous les cadres ont la même taille sur la grille Insta.

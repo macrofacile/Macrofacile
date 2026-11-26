@@ -69,7 +69,7 @@ def cover(part, sub, dark=False):
     return f'''<div class="s" style="background:{bg}"><div class="in" style="justify-content:space-between;gap:0">
 <img src="../logo.png" style="width:240px;transform:rotate(-4deg);align-self:flex-start">
 <div style="display:flex;flex-direction:column;gap:{48 if not dark else 64}px;align-items:center">
-<div style="position:relative"><div style="background:{card_bg};border:6px solid {K};border-radius:44px;padding:26px 50px 40px;transform:rotate(-2deg);box-shadow:10px 18px 0 {shadow};font-weight:700;font-size:{(100 if '<br>' in THEME else (138 if len(THEME)<=11 else 116))}px;line-height:1.05;text-align:center;white-space:nowrap">{THEME}</div>{sticker}</div>
+<div style="position:relative"><div style="background:{card_bg};border:6px solid {K};border-radius:44px;padding:26px 0 40px;width:860px;box-sizing:border-box;transform:rotate(-2deg);box-shadow:10px 18px 0 {shadow};font-weight:700;line-height:1.05;text-align:center;white-space:nowrap"><span class="fit" style="font-size:124px;display:inline-block">{THEME}</span></div>{sticker}</div>
 {partpill}{subpill}</div><div></div></div>{swipe}</div>'''
 
 def nextpost(n, t):

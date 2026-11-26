@@ -69,7 +69,7 @@ def cover(part, sub, dark=False):
     return f'''<div class="s" style="background:{bg}"><div class="in" style="justify-content:space-between;gap:0">
 <img src="../logo.png" style="width:240px;transform:rotate(-4deg);align-self:flex-start">
 <div style="display:flex;flex-direction:column;gap:{48 if not dark else 64}px;align-items:center">
-<div style="position:relative"><div style="background:{card_bg};border:6px solid {K};border-radius:44px;padding:26px 50px 40px;transform:rotate(-2deg);box-shadow:10px 18px 0 {shadow};font-weight:700;font-size:{(100 if '<br>' in THEME else (138 if len(THEME)<=11 else 116))}px;line-height:1.05;text-align:center;white-space:nowrap">{THEME}</div>{sticker}</div>
+<div style="position:relative"><div style="background:{card_bg};border:6px solid {K};border-radius:44px;padding:26px 0 40px;width:860px;box-sizing:border-box;transform:rotate(-2deg);box-shadow:10px 18px 0 {shadow};font-weight:700;line-height:1.05;text-align:center;white-space:nowrap"><span class="fit" style="font-size:124px;display:inline-block">{THEME}</span></div>{sticker}</div>
 {partpill}{subpill}</div><div></div></div>{swipe}</div>'''
 
 def nextpost(n, t):
@@ -374,11 +374,12 @@ for a,b in [("Tout le monde retire en même temps','mais l'argent est prêté su
 _bs = _bs.replace("Tout le monde retire en même temps</b><span>mais l'argent est prêté sur 20 ans…","Elle n'a rien fait de mal</b><span>ses crédits sont bons… mais remboursés sur 20 ans").replace("→ elle n'a pas assez de cash","→ la confiance, c'est vital")
 _p2 = [cover(2, 'Quand une banque tombe'), _panic, _bs, _rescue, _mots, _retenir]
 P['p1'] = _refoot(_p1, 'PARTIE 1'); P['p2'] = _refoot(_p2, 'PARTIE 2'); del P['p3']
+FITJS = "<script>/*fitjs*/document.fonts.ready.then(()=>{for(const e of document.querySelectorAll('.fit')){let f=124;while(e.offsetWidth>760&&f>60){f-=2;e.style.fontSize=f+'px'}}})</script>"
 import re
 def _contour(h):
     # règle nov. 2026 : blocs avec contour noir + ombre en biais
     return re.sub(r'box-shadow:0 (\d+)px 0 #121212', lambda m: f'border:5px solid #121212;box-shadow:{max(5,round(int(m.group(1))*0.6))}px {m.group(1)}px 0 #121212', h)
 for k, lst in P.items():
     for i, h in enumerate(lst, 1):
-        open(f'{OUT}/{k}-{i}.html', 'w').write(_contour(f'<!doctype html><html><head><meta charset="utf-8"><style>{CSS}</style></head><body>{h}</body></html>'))
+        open(f'{OUT}/{k}-{i}.html', 'w').write(_contour(f'<!doctype html><html><head><meta charset="utf-8"><style>{CSS}</style></head><body>{h}{FITJS}</body></html>'))
 print('ok')
