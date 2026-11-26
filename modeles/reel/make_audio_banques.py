@@ -21,13 +21,10 @@ def vroom(dur):
     x=np.convolve(x,np.ones(40)/40,'same');return x*np.sin(np.pi*t/dur)**1.5*.8
 def ding(): return tone(1568,1.2,.002,.5,(1,2,3))+tone(2093,1.2,.002,.4)*.5
 sfx=np.zeros(N)
-for t in [5.2,13.4,21.4,29.8,38.0]: add(sfx,whoosh(),t-.1,.6)
-for t in [0.2,0.9, 5.8,6.8,8.6,10.4, 14.0,15.8,16.6,18.2, 22.0,22.4,22.85,23.3,23.75, 30.4,31.6,33.4, 38.0,38.7,39.1,39.5]: add(sfx,pop(),t,.5)
-for t in [0.9,2.4,7.0,10.6,14.2,18.4,22.6,25.8,30.6,34.0,40.0]: add(sfx,blip(),t,.28)
-for k in range(10): add(sfx,tone(2200,.05,.001,.02),14.2+k*0.5,.25)
-def thud():
-    n=int(.4*SR);t=np.arange(n)/SR;f=90*np.exp(-t*8)+40;return np.sin(2*np.pi*np.cumsum(f)/SR)*np.exp(-t*7)
-add(sfx,thud(),25.2,1.0); add(sfx,ding(),31.0,.4); add(sfx,ding(),39.5,.45)
+for t in [5.2,13.4,22.0,30.2,38.0]: add(sfx,whoosh(),t-.1,.6)
+for t in [0.2,0.9, 5.8,7.2,9.6, 14.0,15.6,17.4, 22.6,23.6,25.2, 30.8,31.8,32.8,34.4, 38.0,38.7,39.1,39.5]: add(sfx,pop(),t,.5)
+for t in [0.9,2.4,6.2,9.0,14.4,17.8,23.0,25.6,31.0,34.6,40.0]: add(sfx,blip(),t,.28)
+add(sfx,rise(1.0),17.4,.6); add(sfx,ding(),25.6,.4); add(sfx,ding(),39.5,.45)
 # musique 5 : bossa lounge, 120 bpm, Fa majeur, Fmaj7-Dm7-Gm7-C7, piano électrique + basse + brosses
 bpm=120; beat=60/bpm; bar=4*beat; mus=np.zeros(N)
 def ep(f,dur):
