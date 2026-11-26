@@ -48,12 +48,19 @@
 
 <!-- S4 : comment elle gagne -->
 <div class="a" id="s4t" style="top:480px"><div class="txt">Comment elle<br><span class="hl">gagne sa vie</span>&nbsp;?</div></div>
-<div class="a" id="r1" style="top:700px;left:70px;right:auto"><div class="card" style="background:#fff;transform:rotate(-3deg);text-align:center;padding:24px 40px 34px;display:flex;flex-direction:column;gap:6px"><span style="font-size:34px;font-weight:500">sur l'épargne<br>d'Emma, elle<br>lui donne</span><b style="font-size:110px;line-height:1">1 %</b></div></div>
-<div class="a" id="r2" style="top:700px;left:auto;right:70px"><div class="card" style="background:#FFD166;transform:rotate(3deg);text-align:center;padding:24px 40px 34px;display:flex;flex-direction:column;gap:6px"><span style="font-size:34px;font-weight:500">sur le crédit<br>de Lucas, elle<br>lui demande</span><b style="font-size:110px;line-height:1">4 %</b></div></div>
-<div class="a" id="r3" style="top:1070px"><div class="lbl" style="font-size:58px;background:#7FDDB5;transform:rotate(-2deg)">elle garde la différence</div></div>
-<div class="a" id="r4" style="top:1185px"><div class="sub" style="font-size:44px">pour payer ses employés, ses agences…</div></div>
+<div class="a" id="m1" style="top:700px"><div style="display:flex;flex-direction:column;align-items:center;gap:12px"><div class="word" style="background:#FFD166;font-size:58px;transform:rotate(-1.5deg)">Emma met 1 000 € sur son livret</div><div class="sub" style="font-size:42px">la banque lui donne <b>10 € par an</b> (1 %)</div></div></div>
+<div class="a" id="ma1" style="top:880px"><div class="big" style="font-size:72px;font-weight:700;-webkit-text-stroke:3px #121212">↓</div></div>
+<div class="a" id="m2" style="top:960px"><div style="display:flex;flex-direction:column;align-items:center;gap:12px"><div class="word" style="background:#DCD3FF;font-size:58px;transform:rotate(1.5deg)">La banque prête ces 1 000 € à Lucas</div><div class="sub" style="font-size:42px">Lucas lui paie <b>40 € par an</b> (4 %)</div></div></div>
+<div class="a" id="m3" style="top:1250px"><div class="lbl" style="font-size:52px;background:#7FDDB5;transform:rotate(-2deg)">40 € reçus, 10 € donnés → 30 € pour elle</div></div>
 
-<div class="a" id="r5" style="top:1290px"><div class="lbl" style="font-size:38px;background:#CDE6FF;transform:rotate(1.5deg)">ces taux bougent : ils suivent la banque centrale</div></div>
+<!-- S4b : les taux bougent -->
+<div class="a" id="s6t" style="top:480px"><div class="txt">Et ces taux,<br>ils <span class="hl">changent</span>&nbsp;?</div></div>
+<div class="a" id="n1" style="top:720px"><div class="word" style="background:#CDE6FF;font-size:70px;transform:rotate(-2deg)">La BCE monte ses taux ↑</div></div>
+<div class="a" id="na1" style="top:880px"><div class="big" style="font-size:72px;font-weight:700;-webkit-text-stroke:3px #121212">↓</div></div>
+<div class="a" id="n2" style="top:980px;left:60px;right:auto"><div class="lbl" style="font-size:50px;background:#FFD166;transform:rotate(-3deg)">livret d'Emma ↑</div></div>
+<div class="a" id="n3" style="top:980px;left:auto;right:60px"><div class="lbl" style="font-size:50px;background:#DCD3FF;transform:rotate(3deg)">crédit de Lucas ↑</div></div>
+<div class="a" id="n4" style="top:1140px"><div class="sub" style="font-size:46px">Ex. : son livret passe de <b>1 % à 3 %</b></div></div>
+<div class="a" id="n5" style="top:1250px"><div class="lbl" style="font-size:46px;transform:rotate(1.5deg)">et l'inverse quand elle les baisse</div></div>
 
 <!-- S5 : services -->
 <div class="a" id="s5t" style="top:480px"><div class="txt">Et au quotidien,<br>elle te permet de…</div></div>
@@ -110,18 +117,19 @@ function show(id,t,t0,t1,kind){const e=$(id);const p=(t-t0)/0.45,q=(t-t1)/0.3;
  else if(kind==='right')tr=`translateX(${(1-k)*700}px)`;else tr=`translateY(${(1-k)*80}px)`;
  if(q>0)tr+=` translateY(${-out(q)*60}px)`;e.style.opacity=o;e.style.transform=tr;}
 // prof lines: [start,end,text]
-const LINES=[[0.9,2.3,'Facile, tu vas voir !'],[2.4,4.75,'On va voir ça\nensemble !'],[6.2,8.8,'Garder…'],[9.0,12.6,'… et prêter !'],[14.4,17.0,'Ton épargne\naide quelqu\'un'],[17.8,21.2,'Malin, non ?'],[23.0,25.0,'1 % contre 4 %…'],[25.6,29.4,'La différence,\nc\'est pour elle !'],[31.0,33.8,'Bien pratique !'],[34.6,37.4,'Sans banques,\ntout s\'arrête'],[40.0,44.5,'À bientôt !']];
+const LINES=[[0.9,2.3,'Facile, tu vas voir !'],[2.4,4.75,'On va voir ça\nensemble !'],[6.2,8.8,'Garder…'],[9.0,12.6,'… et prêter !'],[14.4,17.0,'Ton épargne\naide quelqu\'un'],[17.8,21.2,'Malin, non ?'],[23.0,26.6,'10 € pour Emma…'],[27.6,30.4,'… 30 € pour\nla banque !'],[32.0,35.0,'Tout suit\nla BCE !'],[36.4,38.4,'Logique !'],[39.8,42.6,'Bien pratique !'],[43.4,46.2,'Sans banques,\ntout s\'arrête'],[48.8,53,'À bientôt !']];
 function render(tr){let t=tr;
- const lo=t<37.6?1:1-cl((t-37.6)/0.3);$('logoTop').style.opacity=lo;
+ const lo=t<46.4?1:1-cl((t-46.4)/0.3);$('logoTop').style.opacity=lo;
  $('logoTop').style.transform=`rotate(${Math.sin(t*2.2)*3}deg) translateY(${Math.sin(t*1.6)*6}px)`;
  show('t1',t,0.2,4.8,'pop');show('t2',t,0.9,4.8,'right');
  show('s2t',t,5.2,13.0,'up');show('g1',t,5.8,13.0,'left');show('g2',t,7.2,13.0,'right');show('i1',t,6.4,13.0,'pop');show('i2',t,7.8,13.0,'pop');show('s2b',t,9.6,13.0,'up');
  if(t>5.8)$('g1').style.transform+=` translateY(${Math.sin(t*3)*6}px)`;if(t>7.2)$('g2').style.transform+=` translateY(${Math.sin(t*3+1.5)*6}px)`;
  show('s3t',t,13.4,21.6,'up');show('uk0',t,14.0,21.6,'pop');show('ua0',t,15.2,21.6,'up');show('uk1',t,15.6,21.6,'pop');show('ua1',t,17.0,21.6,'up');show('uk2',t,17.4,21.6,'pop');
- show('s4t',t,22.0,29.8,'up');show('r1',t,22.6,29.8,'left');show('r2',t,23.6,29.8,'right');show('r3',t,25.2,29.8,'pop');show('r5',t,27.2,29.8,'pop');show('r4',t,26.4,29.8,'up');
- show('s5t',t,30.2,37.6,'up');show('v1',t,30.8,37.6,'pop');show('v2',t,31.8,37.6,'pop');show('v3',t,32.8,37.6,'pop');show('v4',t,34.4,37.6,'up');
- show('endlogo',t,38.0,99,'pop');show('end1',t,38.7,99,'up');show('end3',t,39.1,99,'up');show('end2',t,39.5,99,'pop');
- if(t>38.0)$('endlogo').style.transform+=` rotate(${Math.sin((t-38.0)*2.4)*3}deg)`;
+ show('s4t',t,22.0,30.6,'up');show('m1',t,22.6,30.6,'pop');show('ma1',t,24.6,30.6,'up');show('m2',t,25.0,30.6,'pop');show('m3',t,27.4,30.6,'pop');
+ show('s6t',t,31.0,38.6,'up');show('n1',t,31.6,38.6,'pop');show('na1',t,32.8,38.6,'up');show('n2',t,33.2,38.6,'left');show('n3',t,33.6,38.6,'right');show('n4',t,34.8,38.6,'up');show('n5',t,36.2,38.6,'pop');
+ show('s5t',t,39.0,46.4,'up');show('v1',t,39.6,46.4,'pop');show('v2',t,40.6,46.4,'pop');show('v3',t,41.6,46.4,'pop');show('v4',t,43.2,46.4,'up');
+ show('endlogo',t,46.8,99,'pop');show('end1',t,47.5,99,'up');show('end3',t,47.9,99,'up');show('end2',t,48.3,99,'pop');
+ if(t>46.8)$('endlogo').style.transform+=` rotate(${Math.sin((t-46.8)*2.4)*3}deg)`;
  t=tr;
  // prof: enters at 0.4, bobs, blinks, talks when a line is active
  const pin=back((t-0.3)/0.6);
